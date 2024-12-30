@@ -12,19 +12,23 @@ const AppFactory = (args) => {
   //create server (and middlewares)
   const app = express();
 
-  app.get('/movies', () => {});
+  // create handlers
+  const moviesHandler = new MoviesHandler({ moviesService });
 
-  app.get('/movies/:id', () => {});
+  // register handlers to routes
+  app.get('/movies', moviesHandler.getAllMovies);
 
-  app.get('movies/create', () => {});
+  app.get('/movies/:id', moviesHandler.getMovie);
 
-  app.post('movies/create', () => {});
+  app.get('movies/create', moviesHandler.createMovie);
 
-  app.get('movies/update/:id', () => {});
+  app.post('movies/create', moviesHandler.createMoviePost);
 
-  app.post('movies/update/:id', () => {});
+  app.get('movies/update/:id', moviesHandler.updateMovie);
 
-  app.post('/movies/delete/:id', () => {});
+  app.post('movies/update/:id', moviesHandler.updateMoviePost);
+
+  app.post('/movies/delete/:id', moviesHandler.deleteMovie);
 
   return app;
 };
