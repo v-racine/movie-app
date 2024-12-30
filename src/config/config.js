@@ -11,11 +11,16 @@ class Config {
     }
 
     this.nodeEnv = 'dev';
+    this.serverPort = '3000';
     this.dbServerAddress = 'postgresql://localhost:5432';
     this.db = 'movie-app';
 
     if (env.NODE_ENV !== undefined) {
       this.nodeEnv = env.NODE_ENV;
+    }
+
+    if (env.SERVER_PORT !== undefined) {
+      this.serverPort = env.SERVER_PORT;
     }
 
     if (env.DB_STORE_ADDRESS !== undefined) {

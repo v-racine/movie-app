@@ -6,12 +6,12 @@ const AppFactory = require('./app');
 
 const { MoviesRepo } = require('./repositories/moviesRepo');
 
-const app = new AppFactory({
+const app = AppFactory({
   moviesRepo: new MoviesRepo('movies'),
 });
 
 //listener
-app.listen(3000, () => {
+app.listen(Config.Get().serverPort, () => {
   console.log('Listening on port 3000...');
 });
 
