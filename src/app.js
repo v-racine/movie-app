@@ -1,10 +1,14 @@
 const express = require('express');
-
+const { MoviesRepo } = require('./repositories/moviesRepo');
 const { MovieService } = require('./services/moviesService');
+const { MoviesHandler } = require('./handlers/moviesHandler');
 
 const AppFactory = (args) => {
   //repos
-  const moviesRepo = args.moviesRepo;
+  const moviesRepo = new MoviesRepo({
+    table: 'movies',
+    client: args.pgClient,
+  });
 
   //services (business logic layer)
   const moviesService = new MovieService({ moviesRepo });

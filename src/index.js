@@ -4,10 +4,17 @@ Config.Get(process.env);
 
 const AppFactory = require('./app');
 
-const { MoviesRepo } = require('./repositories/moviesRepo');
+const { PgClient } = require('./repositories/pgClient');
+
+const isProduction = Config.Get().nodeEnv === 'prod';
+
+const CONNECTION = {
+  connectionString: `${Config.Get().dbServerAddress}/${Config.Get().db}`,
+  ssl: isProduction ? { rejectUnauthorized: false } : false,
+};
 
 const app = AppFactory({
-  moviesRepo: new MoviesRepo('movies'),
+  pgClient: new PgClient(CONNECTION),
 });
 
 //listener

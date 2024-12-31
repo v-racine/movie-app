@@ -25,3 +25,5 @@ class MoviesHandler {
 
   async deleteMovie(req, res) {}
 }
+
+module.exports = { MoviesHandler };
