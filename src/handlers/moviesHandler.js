@@ -11,7 +11,10 @@ class MoviesHandler {
     this.deleteMovie = this.deleteMovie.bind(this);
   }
 
-  async getAllMovies(req, res) {}
+  async getAllMovies(req, res) {
+    const movies = await this.moviesService.getAllMovies();
+    res.render('movie-list', { movies });
+  }
 
   async getMovie(req, res) {}
 
