@@ -1,0 +1,51 @@
+body {
+  background-color: rgb(198, 204, 227);
+  font-size: 24px;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+  width: 75%;
+}
+
+button {
+  display: block;
+  margin: 0 auto;
+  width: 15%;
+  margin-bottom: 3%;
+}
+
+h1,
+p {
+  text-align: center;
+}
+
+h1 {
+  color: rgba(17, 17, 158);
+  text-decoration: underline;
+}
+
+a {
+  text-decoration: none;
+}
+
+.flag {
+  width: 100px;
+}
+
+.current img {
+  border: 2px solid rgb(17, 17, 158);
+  padding: 2px;
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  list-style: none;
+}
+
+li {
+  margin: 1rem;
+}

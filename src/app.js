@@ -2,6 +2,7 @@ const express = require('express');
 const { MoviesRepo } = require('./repositories/moviesRepo');
 const { MovieService } = require('./services/moviesService');
 const { MoviesHandler } = require('./handlers/moviesHandler');
+const { HomeHandler } = require('./handlers/homeHandler');
 
 const AppFactory = (args) => {
   //repos
@@ -16,10 +17,17 @@ const AppFactory = (args) => {
   //create server (and middlewares)
   const app = express();
 
+  app.set('views', 'src/views');
+  app.set('view engine', 'pug');
+
+  app.use(express.static('src/public'));
   // create handlers
+  const homeHandler = new HomeHandler();
   const moviesHandler = new MoviesHandler({ moviesService });
 
   // register handlers to routes
+  app.get('/', homeHandler.getHomePage);
+
   app.get('/movies', moviesHandler.getAllMovies);
 
   app.get('/movies/:id', moviesHandler.getMovie);

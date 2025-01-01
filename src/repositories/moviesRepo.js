@@ -1,13 +1,15 @@
 class MoviesRepo {
   constructor(args) {
     this.table = args.table;
-    this.client = args.pgClient;
+    this.client = args.client;
   }
 
   async getAll() {
-    //query
+    const query = `SELECT * FROM ${this.table} ORDER BY id`;
 
-    this.client.dbQuery();
+    const result = await this.client.dbQuery(query);
+
+    return JSON.stringify(result.rows);
   }
 
   async getOne() {}

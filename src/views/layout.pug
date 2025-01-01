@@ -1,0 +1,24 @@
+doctype html 
+html(lang="en-US")
+  
+  head 
+    title The Ultimate Movie App 
+    meta(charset="UTF-8")
+    link(rel="stylesheet" href="/stylesheets/application.css")
+
+  body 
+    header 
+      h1 The Ultimate Movie App 
+      block headerLinks 
+
+    main 
+      - let kinds = Object.keys(flash || {});
+      if kinds.length > 0
+        ul
+          each kind in kinds
+            each message in flash[kind]
+              li.flash(class=kind)= message
+
+      block main
+
+    
