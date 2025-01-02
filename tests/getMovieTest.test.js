@@ -5,29 +5,25 @@ Config.Get(process.env);
 const AppFactory = require('../src/app');
 const request = require('supertest');
 
-describe('get all movies', () => {
+describe('get a movie', () => {
   const mockPgClient = {};
 
   const app = AppFactory({
     pgClient: mockPgClient,
   });
 
-  describe('when: users want to view all movies', () => {
+  describe('when: users want to view ONE movie', () => {
     let rsp;
+
+    let id = 2;
 
     let movies = {
       rows: [
         {
-          id: 1,
-          movie_title: 'Nosferatu',
-          movie_year: 2024,
-          run_time: 132,
-        },
-        {
           id: 2,
-          movie_title: 'Point Break',
-          movie_year: 1991,
-          run_time: 122,
+          movie_title: 'Notorious',
+          movie_year: 1946,
+          run_time: 101,
         },
       ],
     };
@@ -39,19 +35,21 @@ describe('get all movies', () => {
         });
       });
 
-      rsp = await request(app).get('/movies').send();
+      rsp = await request(app).get(`/movies/${id}`).send();
     });
 
     afterEach(() => {
       jest.clearAllMocks();
     });
 
-    test('then: we return all the movie titles', async () => {
-      expect(mockPgClient.dbQuery).toHaveBeenCalledWith('SELECT * FROM movies ORDER BY id');
+    test('then: we return all the information about that ONE movie', async () => {
+      expect(mockPgClient.dbQuery).toHaveBeenCalledWith(
+        `SELECT * FROM movies WHERE id = $1`,
+        id.toString(),
+      );
 
       const text = rsp.text;
       expect(text).toMatchSnapshot();
-      // expect(text).toEqual(JSON.stringify(movies.rows));
 
       const status = rsp.status;
       expect(status).toBe(200);

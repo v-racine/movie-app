@@ -16,7 +16,6 @@ class MovieService {
   async getMovie(id) {
     const movieObj = await this.moviesRepo.getOne(id);
 
-    console.log(movieObj);
     return movieObj;
   }
 }
