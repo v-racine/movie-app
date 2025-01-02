@@ -9,7 +9,7 @@ class MoviesRepo {
 
     const result = await this.client.dbQuery(query);
 
-    return JSON.stringify(result.rows);
+    return result.rows;
   }
 
   async getOne() {}

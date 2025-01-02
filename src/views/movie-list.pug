@@ -2,5 +2,8 @@ extends layout
 
 block main 
   p Here are your favourite movies:
-  p #{ movies }
+
+  ul
+  each title in movies
+    li= title
 
