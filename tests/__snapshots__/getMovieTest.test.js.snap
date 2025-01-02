@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`get a movie when: users want to view ONE movie then: we return all the information about that ONE movie 1`] = `"<!DOCTYPE html ><html lang="en-US"><head> <title>The Ultimate Movie App </title><meta charset="UTF-8"/><link rel="stylesheet" href="/stylesheets/application.css"/></head><body> <header> <h1>The Ultimate Movie App </h1></header><main> <p>Here is your selected movie:</p><table><tbody><tr><td> <b>Title: </b>Notorious</td></tr><tr><td> <b>Year: </b>1946</td></tr><tr><td> <b>Run-Time: </b>101 minutes</td></tr></tbody></table></main></body></html>"`;
