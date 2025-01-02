@@ -16,7 +16,10 @@ class MoviesHandler {
     res.render('movie-list', { movies });
   }
 
-  async getMovie(req, res) {}
+  async getMovie(req, res) {
+    const movie = await this.moviesService.getMovie(req.params.id);
+    res.render('movie', { movie });
+  }
 
   async createMovie(req, res) {}
 

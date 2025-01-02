@@ -1,0 +1,19 @@
+extends layout 
+
+block main 
+  p Here is your selected movie:
+
+  table
+    tbody
+      tr
+        td 
+          b Title: 
+          | #{movie.movie_title}
+      tr
+        td 
+          b Year: 
+          | #{movie.movie_year}
+      tr
+        td 
+          b Run-Time: 
+          | #{movie.run_time} minutes

@@ -5,14 +5,20 @@ class MoviesRepo {
   }
 
   async getAll() {
-    const query = `SELECT * FROM ${this.table} ORDER BY id`;
+    const ALL_MOVIES = `SELECT * FROM ${this.table} ORDER BY id`;
 
-    const result = await this.client.dbQuery(query);
+    const result = await this.client.dbQuery(ALL_MOVIES);
 
     return result.rows;
   }
 
-  async getOne() {}
+  async getOne(id) {
+    const MOVIE = `SELECT * FROM ${this.table} WHERE id = $1`;
+
+    const result = await this.client.dbQuery(MOVIE, id);
+
+    return result.rows[0];
+  }
 
   async getOneBy() {}
 
