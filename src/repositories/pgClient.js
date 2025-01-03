@@ -14,7 +14,7 @@ class PgClient {
       return await client.query(statement, parameters);
     } catch (err) {
       console.log('something is broken:', err);
-      //TODO: rethrow?
+      throw err;
     } finally {
       client.end();
     }
