@@ -26,7 +26,11 @@ class MoviesRepo {
 
   async update() {}
 
-  async delete() {}
+  async delete(id) {
+    const DELETE_MOVIE = `DELETE FROM ${this.table} WHERE id = $1`;
+
+    await this.client.dbQuery(DELETE_MOVIE, id);
+  }
 }
 
 module.exports = { MoviesRepo };

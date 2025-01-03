@@ -29,7 +29,20 @@ class MoviesHandler {
 
   async updateMoviePost(req, res) {}
 
-  async deleteMovie(req, res) {}
+  async deleteMovie(req, res) {
+    try {
+      await this.moviesService.deleteMovie(req.params.id);
+    } catch (err) {
+      if (err instanceof Error) {
+        console.log(`failed to delete movie: ${err.message}`);
+
+        res.send('Internal Server Error');
+        return;
+      }
+    }
+
+    res.redirect('/movies');
+  }
 }
 
 module.exports = { MoviesHandler };

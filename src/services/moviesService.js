@@ -5,18 +5,25 @@ class MovieService {
 
   async getAllMovies() {
     const arrOfMovieObjs = await this.moviesRepo.getAll();
-    const arrOfMovies = arrOfMovieObjs.map((movieObject) => [
-      movieObject.id,
-      movieObject.movie_title,
-    ]);
 
-    return arrOfMovies;
+    const idAndTitles = arrOfMovieObjs.map((movieObject) => {
+      return {
+        id: movieObject.id,
+        title: movieObject.movie_title,
+      };
+    });
+
+    return idAndTitles;
   }
 
   async getMovie(id) {
     const movieObj = await this.moviesRepo.getOne(id);
 
     return movieObj;
+  }
+
+  async deleteMovie(id) {
+    await this.moviesRepo.delete(id);
   }
 }
 

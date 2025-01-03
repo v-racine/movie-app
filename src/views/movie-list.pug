@@ -4,8 +4,8 @@ block main
   p Here are your favourite movies:
 
   ul
-  each title in movies
+  each movie in movies
     p 
-    a(href=`/movies/${title[0]}`)= title[1]
-      
-
+    a(href=`/movies/${movie.id}`)= movie.title  
+    form(action=`/movies/delete/${movie.id}` method="POST")
+      button(type="submit") Delete Movie
