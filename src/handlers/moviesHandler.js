@@ -1,3 +1,5 @@
+const { ErrMovieNotFound } = require('../services/moviesService');
+
 class MoviesHandler {
   constructor(args) {
     this.moviesService = args.moviesService;
@@ -38,9 +40,24 @@ class MoviesHandler {
     res.redirect('/movies');
   }
 
-  async updateMovie(req, res) {}
+  async updateMovie(req, res) {
+    res.render('edit-movie', { id: req.params.id });
+  }
 
-  async updateMoviePost(req, res) {}
+  async updateMoviePost(req, res) {
+    try {
+      await this.moviesService.updateMovie(req.params.id, req.body);
+    } catch (err) {
+      if (err instanceof ErrMovieNotFound) {
+        return res.send(`${err.message}`);
+      } else {
+        console.log(`failed to update movie: ${err}`);
+        return res.send('Internal server error');
+      }
+    }
+
+    res.redirect('/movies');
+  }
 
   async deleteMovie(req, res) {
     try {

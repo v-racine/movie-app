@@ -1,3 +1,5 @@
+const { run } = require('jest');
+
 class MoviesRepo {
   constructor(args) {
     this.table = args.table;
@@ -20,7 +22,33 @@ class MoviesRepo {
     return result.rows[0];
   }
 
-  async getOneBy() {}
+  async getOneBy(filters) {
+    let query = `SELECT * FROM ${this.table} WHERE `;
+
+    const params = [];
+
+    let count = 1;
+
+    const entries = Object.entries(filters);
+
+    const len = entries.length;
+
+    for (const [key, value] of entries) {
+      if (count === len) {
+        query += `${key} = $${count}`;
+      } else {
+        query += `${key} = $${count} AND`;
+      }
+
+      params.push(value);
+
+      count++;
+    }
+
+    const result = await this.dbQuery(query, ...params);
+
+    return result.rows[0];
+  }
 
   async create(attrs) {
     const CREATE_MOVIE = `INSERT INTO ${this.table} (movie_title, movie_year, run_time) VALUES ($1, $2, $3)`;
@@ -30,7 +58,13 @@ class MoviesRepo {
     await this.client.dbQuery(CREATE_MOVIE, title, year, runTime);
   }
 
-  async update() {}
+  async update(id, updatedMovie) {
+    const UPDATED_MOVIE = `UPDATE ${this.table} SET movie_title = $1, movie_year = $2, run_time = $3 WHERE id = $4`;
+
+    const { title, year, runTime } = updatedMovie;
+
+    await this.client.dbQuery(UPDATED_MOVIE, title, year, runTime, id);
+  }
 
   async delete(id) {
     const DELETE_MOVIE = `DELETE FROM ${this.table} WHERE id = $1`;
