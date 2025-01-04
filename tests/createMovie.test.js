@@ -12,6 +12,26 @@ describe('add a movie', () => {
     pgClient: mockPgClient,
   });
 
+  describe('when a use wants to view the form to add a movie', () => {
+    let rsp;
+
+    beforeEach(async () => {
+      rsp = await request(app).get('/movies/create').send();
+    });
+
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
+    test('then: we return the view of the form', async () => {
+      const text = rsp.text;
+      expect(text).toMatchSnapshot();
+
+      const status = rsp.status;
+      expect(status).toBe(200);
+    });
+  });
+
   describe('when a user adds a new movie', () => {
     let rsp;
 
