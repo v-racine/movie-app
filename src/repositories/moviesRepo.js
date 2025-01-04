@@ -22,7 +22,13 @@ class MoviesRepo {
 
   async getOneBy() {}
 
-  async create() {}
+  async create(attrs) {
+    const CREATE_MOVIE = `INSERT INTO ${this.table} (movie_title, movie_year, run_time) VALUES ($1, $2, $3)`;
+
+    const { title, year, runTime } = attrs;
+
+    await this.client.dbQuery(CREATE_MOVIE, title, year, runTime);
+  }
 
   async update() {}
 

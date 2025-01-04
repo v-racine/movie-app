@@ -21,9 +21,22 @@ class MoviesHandler {
     res.render('movie', { movie });
   }
 
-  async createMovie(req, res) {}
+  async createMovie(req, res) {
+    res.render('new-movie');
+  }
 
-  async createMoviePost(req, res) {}
+  async createMoviePost(req, res) {
+    const { title, year, runTime } = req.body;
+
+    try {
+      await this.moviesService.createMovie(title, year, runTime);
+    } catch (err) {
+      console.log(`failed to create new product: ${err}`);
+      return res.send('Internal server error');
+    }
+
+    res.redirect('/movies');
+  }
 
   async updateMovie(req, res) {}
 

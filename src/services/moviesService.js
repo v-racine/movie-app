@@ -25,6 +25,14 @@ class MovieService {
   async deleteMovie(id) {
     await this.moviesRepo.delete(id);
   }
+
+  async createMovie(title, year, runTime) {
+    await this.moviesRepo.create({
+      title,
+      year,
+      runTime,
+    });
+  }
 }
 
 module.exports = {

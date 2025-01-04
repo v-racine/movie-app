@@ -1,0 +1,35 @@
+extends layout 
+
+block main 
+  form(action="/movies/create" method="post")
+    dl
+      dt
+        label(for="title") Enter the title of a new movie:
+      dd
+        input(type="text"
+              id="title"
+              name="title"
+              placeholder="Movie Title"
+              value=title)
+      dt
+        label(for="year") Enter the movie's year of release:
+      dd
+        input(type="text"
+              id="year"
+              name="year"
+              placeholder="Release Year"
+              value=year)
+      dt
+        label(for="runTime") Enter the movie's run time:
+      dd
+        input(type="text"
+              id="runTime"
+              name="runTime"
+              placeholder="Run time"
+              value=runTime)
+
+
+    fieldset.actions
+      input(type="submit" value="Add Movie")
+      input(type='reset', value='Clear Form')
+      
