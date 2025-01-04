@@ -20,7 +20,7 @@ const AppFactory = (args) => {
   app.set('views', 'src/views');
   app.set('view engine', 'pug');
 
-  app.use(express.static('src/public'));
+  app.use(express.static('public'));
   app.use(express.urlencoded({ extended: false }));
 
   // create handlers
