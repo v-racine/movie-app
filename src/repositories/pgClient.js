@@ -13,7 +13,7 @@ class PgClient {
 
       return await client.query(statement, parameters);
     } catch (err) {
-      console.log('something is broken:', err);
+      console.log(`PgClient.dbQuery failed: ${err.message}`);
       throw err;
     } finally {
       client.end();
