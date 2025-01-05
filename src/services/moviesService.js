@@ -1,3 +1,9 @@
+class ErrMovieNotFound extends Error {
+  constructor() {
+    super('Movie not found');
+  }
+}
+
 class MovieService {
   constructor(args) {
     this.moviesRepo = args.moviesRepo;
@@ -33,8 +39,20 @@ class MovieService {
       runTime,
     });
   }
+
+  async updateMovie(id, attrs) {
+    const existingMovie = await this.moviesRepo.getOne(id);
+    if (!existingMovie) {
+      throw new ErrMovieNotFound();
+    }
+
+    Object.assign(existingMovie, attrs);
+
+    await this.moviesRepo.update(id, existingMovie);
+  }
 }
 
 module.exports = {
   MovieService,
+  ErrMovieNotFound,
 };
