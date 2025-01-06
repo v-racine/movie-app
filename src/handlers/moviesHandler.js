@@ -1,4 +1,5 @@
 const { ErrMovieNotFound } = require('../services/moviesService');
+const { validationResult } = require('express-validator');
 
 class MoviesHandler {
   constructor(args) {
@@ -28,6 +29,19 @@ class MoviesHandler {
   }
 
   async createMoviePost(req, res) {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      const errMsgs = errors.array().map((error) => error.msg);
+      console.log('ERR MSG', errMsgs);
+      return res.render('new-movie', {
+        title: req.body.title,
+        year: req.body.year,
+        runTime: req.body.runTime,
+        errorMessages: errMsgs,
+      });
+    }
+
     const { title, year, runTime } = req.body;
 
     try {
@@ -45,6 +59,19 @@ class MoviesHandler {
   }
 
   async updateMoviePost(req, res) {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      const errMsgs = errors.array().map((error) => error.msg);
+      console.log('ERR MSG', errMsgs);
+      return res.render('new-movie', {
+        title: req.body.title,
+        year: req.body.year,
+        runTime: req.body.runTime,
+        errorMessages: errMsgs,
+      });
+    }
+
     try {
       await this.moviesService.updateMovie(req.params.id, req.body);
     } catch (err) {

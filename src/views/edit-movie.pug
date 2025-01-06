@@ -27,6 +27,10 @@ block main
               name="runTime"
               placeholder="Run time"
               value=runTime)
+        
+        if errorMessages !== undefined && errorMessages.length > 0
+          each message in errorMessages 
+            p #{message}
 
 
     fieldset.actions
