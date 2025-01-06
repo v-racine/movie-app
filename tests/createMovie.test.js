@@ -12,7 +12,7 @@ describe('add a movie', () => {
     pgClient: mockPgClient,
   });
 
-  describe('when a use wants to view the form to add a movie', () => {
+  describe('when: a use wants to view the form to add a movie', () => {
     let rsp;
 
     beforeEach(async () => {
@@ -32,13 +32,133 @@ describe('add a movie', () => {
     });
   });
 
-  describe('when a user adds a new movie', () => {
+  describe('when: a user does NOT enter a valid title', () => {
+    let rsp;
+
+    let movie = {
+      title: '',
+      year: 1991,
+      runTime: 122,
+    };
+
+    beforeEach(async () => {
+      mockPgClient.dbQuery = jest.fn();
+
+      rsp = await request(app)
+        .post(`/movies/create`)
+        .send(`title=${movie.title}&year=${movie.year}&runTime=${movie.runTime}`);
+    });
+
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
+    test("then: we return 'Title must be between 1 and 250 characters'", async () => {
+      const text = rsp.text;
+      expect(text).toMatchSnapshot();
+
+      const status = rsp.status;
+      expect(status).toBe(200);
+    });
+  });
+
+  describe('when: a user does NOT enter a valid year', () => {
     let rsp;
 
     let movie = {
       title: 'Point Break',
-      year: '1991',
-      runTime: '122',
+      year: 21,
+      runTime: 122,
+    };
+
+    beforeEach(async () => {
+      mockPgClient.dbQuery = jest.fn();
+
+      rsp = await request(app)
+        .post(`/movies/create`)
+        .send(`title=${movie.title}&year=${movie.year}&runTime=${movie.runTime}`);
+    });
+
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
+    test("then: we return 'Year must be a 4-digit number'", async () => {
+      const text = rsp.text;
+      expect(text).toMatchSnapshot();
+
+      const status = rsp.status;
+      expect(status).toBe(200);
+    });
+  });
+
+  describe('when: a user does NOT enter a valid run time', () => {
+    let rsp;
+
+    let movie = {
+      title: 'Point Break',
+      year: 1991,
+      runTime: '2h2',
+    };
+
+    beforeEach(async () => {
+      mockPgClient.dbQuery = jest.fn();
+
+      rsp = await request(app)
+        .post(`/movies/create`)
+        .send(`title=${movie.title}&year=${movie.year}&runTime=${movie.runTime}`);
+    });
+
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
+    test("then: we return 'Run time must be in minutes'", async () => {
+      const text = rsp.text;
+      expect(text).toMatchSnapshot();
+
+      const status = rsp.status;
+      expect(status).toBe(200);
+    });
+  });
+
+  describe('when: a user does NOT enter a valid title NOR a valid year', () => {
+    let rsp;
+
+    let movie = {
+      title: '',
+      year: 'year',
+      runTime: 122,
+    };
+
+    beforeEach(async () => {
+      mockPgClient.dbQuery = jest.fn();
+
+      rsp = await request(app)
+        .post(`/movies/create`)
+        .send(`title=${movie.title}&year=${movie.year}&runTime=${movie.runTime}`);
+    });
+
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
+    test("then: we return both 'Title must be between 1 and 250 characters' AND 'Year must be a 4-digit number'", async () => {
+      const text = rsp.text;
+      expect(text).toMatchSnapshot();
+
+      const status = rsp.status;
+      expect(status).toBe(200);
+    });
+  });
+
+  describe('when: a user successfully adds a new movie', () => {
+    let rsp;
+
+    let movie = {
+      title: 'Point Break',
+      year: 1991,
+      runTime: 122,
     };
 
     beforeEach(async () => {

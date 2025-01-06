@@ -1,6 +1,7 @@
 extends layout 
 
 block main 
+
   form(action="/movies/create" method="post")
     dl
       dt
@@ -27,9 +28,15 @@ block main
               name="runTime"
               placeholder="Run time"
               value=runTime)
-
-
+        
+        if errorMessages !== undefined && errorMessages.length > 0
+          each message in errorMessages 
+            p #{message}
+          
+          
     fieldset.actions
       input(type="submit" value="Add Movie")
       input(type='reset', value='Clear Form')
+
+
       

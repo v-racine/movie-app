@@ -1,4 +1,7 @@
 const express = require('express');
+
+const { parseTitle, parseYear, parseRuntime } = require('./middleware/parsers');
+
 const { MoviesRepo } = require('./repositories/moviesRepo');
 const { MovieService } = require('./services/moviesService');
 const { MoviesHandler } = require('./handlers/moviesHandler');
@@ -31,10 +34,14 @@ const AppFactory = (args) => {
   app.get('/', homeHandler.getHomePage);
   app.get('/movies', moviesHandler.getAllMovies);
   app.get('/movies/create', moviesHandler.createMovie);
-  app.post('/movies/create', moviesHandler.createMoviePost);
+  app.post('/movies/create', [parseTitle, parseYear, parseRuntime], moviesHandler.createMoviePost);
   app.get('/movies/:id', moviesHandler.getMovie);
   app.get('/movies/update/:id', moviesHandler.updateMovie);
-  app.post('/movies/update/:id', moviesHandler.updateMoviePost);
+  app.post(
+    '/movies/update/:id',
+    [parseTitle, parseYear, parseRuntime],
+    moviesHandler.updateMoviePost,
+  );
   app.post('/movies/delete/:id', moviesHandler.deleteMovie);
 
   return app;
