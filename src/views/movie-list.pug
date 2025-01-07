@@ -6,6 +6,5 @@ block main
   ul
   each movie in movies
     p 
-    a(href=`/movies/${movie.id}`)= movie.title  
-    form(action=`/movies/delete/${movie.id}` method="POST")
-      button(type="submit") Delete Movie
+    a(href=`/movies/${movie.id}`)= movie.title
+      
