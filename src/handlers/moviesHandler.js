@@ -33,7 +33,7 @@ class MoviesHandler {
 
     if (!errors.isEmpty()) {
       const errMsgs = errors.array().map((error) => error.msg);
-      console.log('ERR MSG', errMsgs);
+
       return res.render('new-movie', {
         title: req.body.title,
         year: req.body.year,
@@ -63,7 +63,7 @@ class MoviesHandler {
 
     if (!errors.isEmpty()) {
       const errMsgs = errors.array().map((error) => error.msg);
-      console.log('ERR MSG', errMsgs);
+
       return res.render('new-movie', {
         title: req.body.title,
         year: req.body.year,

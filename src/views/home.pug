@@ -3,7 +3,14 @@ extends layout
 block main 
   p Tell us about your favourite movies!
   button Sign Up
+
+  block Movies 
+    form(action="/movies" method="get")
+      button See Movies
+
   img(src="/images/Children_of_paradise.jpg" alt="Children of Paradise" title="Children of Paradise")
+
+
 
 //- doctype html
 

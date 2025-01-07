@@ -17,3 +17,9 @@ block main
         td 
           b Run-Time: 
           | #{movie.run_time} minutes
+
+  footer  
+    form(action=`/movies/update/${movie.id}` method="get")
+      button Edit Movie  
+    form(action=`/movies/delete/${movie.id}` method="post")
+      button(type="submit") Delete Movie
