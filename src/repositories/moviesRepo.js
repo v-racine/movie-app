@@ -43,7 +43,7 @@ class MoviesRepo {
       count++;
     }
 
-    const result = await this.dbQuery(query, ...params);
+    const result = await this.client.dbQuery(query, ...params);
 
     return result.rows[0];
   }

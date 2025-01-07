@@ -162,7 +162,11 @@ describe('add a movie', () => {
     };
 
     beforeEach(async () => {
-      mockPgClient.dbQuery = jest.fn();
+      mockPgClient.dbQuery = jest.fn().mockImplementationOnce(() => {
+        return new Promise((resolve) => {
+          resolve({ rows: [] });
+        });
+      });
 
       rsp = await request(app)
         .post(`/movies/create`)
@@ -174,7 +178,16 @@ describe('add a movie', () => {
     });
 
     test('then: we add the movie to the db AND redirect user to all the movie titles', async () => {
-      expect(mockPgClient.dbQuery).toHaveBeenCalledWith(
+      expect(mockPgClient.dbQuery).toHaveBeenCalledTimes(2);
+
+      expect(mockPgClient.dbQuery).toHaveBeenNthCalledWith(
+        1,
+        'SELECT * FROM movies WHERE movie_title = $1',
+        movie.title,
+      );
+
+      expect(mockPgClient.dbQuery).toHaveBeenNthCalledWith(
+        2,
         'INSERT INTO movies (movie_title, movie_year, run_time) VALUES ($1, $2, $3)',
         movie.title,
         movie.year,

@@ -1,3 +1,9 @@
+class ErrMovieAlreadyExists extends Error {
+  constructor() {
+    super('Movie already exists');
+  }
+}
+
 class ErrMovieNotFound extends Error {
   constructor() {
     super('Movie not found');
@@ -33,6 +39,11 @@ class MovieService {
   }
 
   async createMovie(title, year, runTime) {
+    const existingMovie = await this.moviesRepo.getOneBy({ movie_title: title });
+    if (existingMovie) {
+      throw new ErrMovieAlreadyExists();
+    }
+
     await this.moviesRepo.create({
       title,
       year,
@@ -55,4 +66,5 @@ class MovieService {
 module.exports = {
   MovieService,
   ErrMovieNotFound,
+  ErrMovieAlreadyExists,
 };

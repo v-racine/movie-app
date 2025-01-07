@@ -3,6 +3,10 @@ extends layout
 block main 
   p Here are your favourite movies:
 
+    block Movies 
+    form(action="/movies/create" method="get")
+      button Add a Movie
+
   ul
   each movie in movies
     p 

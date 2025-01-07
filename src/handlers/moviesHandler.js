@@ -1,4 +1,4 @@
-const { ErrMovieNotFound } = require('../services/moviesService');
+const { ErrMovieNotFound, ErrMovieAlreadyExists } = require('../services/moviesService');
 const { validationResult } = require('express-validator');
 
 class MoviesHandler {
@@ -47,8 +47,13 @@ class MoviesHandler {
     try {
       await this.moviesService.createMovie(title, year, runTime);
     } catch (err) {
-      console.log(`failed to create new product: ${err}`);
-      return res.send('Internal server error');
+      if (err instanceof ErrMovieAlreadyExists) {
+        console.log(err);
+        return res.render('new-movie', { err });
+      } else {
+        console.log(`failed to create new movie: ${err}`);
+        return res.send('Internal server error');
+      }
     }
 
     res.redirect('/movies');
