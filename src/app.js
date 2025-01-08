@@ -3,6 +3,7 @@ const session = require('express-session');
 const flash = require('express-flash');
 
 const { parseTitle, parseYear, parseRuntime } = require('./middleware/parsers');
+const { ErrorHandler } = require('./middleware/errorHandler');
 
 const { MoviesRepo } = require('./repositories/moviesRepo');
 const { MovieService } = require('./services/moviesService');
@@ -42,6 +43,7 @@ const AppFactory = (args) => {
     }),
   );
   app.use(flash());
+  app.use(ErrorHandler);
 
   //middleware for flash messages before a redirect
   app.use((req, res, next) => {
