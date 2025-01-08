@@ -20,7 +20,19 @@ class MoviesHandler {
   }
 
   async getMovie(req, res) {
-    const movie = await this.moviesService.getMovie(req.params.id);
+    let movie;
+
+    try {
+      movie = await this.moviesService.getMovie(req.params.id);
+    } catch (err) {
+      if (err instanceof ErrMovieNotFound) {
+        return res.render('new-movie', { err });
+      } else {
+        console.log(`failed to find the movie: ${err}`);
+        return res.send('Internal server error');
+      }
+    }
+
     res.render('movie', { movie });
   }
 
@@ -63,7 +75,19 @@ class MoviesHandler {
   }
 
   async updateMovie(req, res) {
-    res.render('edit-movie', { id: req.params.id });
+    let movie;
+    try {
+      movie = await this.moviesService.getMovie(req.params.id);
+    } catch (err) {
+      if (err instanceof ErrMovieNotFound) {
+        return res.render('new-movie', { err });
+      } else {
+        console.log(`failed to find the movie: ${err}`);
+        return res.send('Internal server error');
+      }
+    }
+
+    res.render('edit-movie', { movie, id: req.params.id });
   }
 
   async updateMoviePost(req, res) {
@@ -72,8 +96,9 @@ class MoviesHandler {
     if (!errors.isEmpty()) {
       errors.array().forEach((error) => req.flash('error', error.msg));
 
-      return res.render('new-movie', {
+      return res.render('edit-movie', {
         flash: req.flash(),
+        id: req.params.id,
         title: req.body.title,
         year: req.body.year,
         runTime: req.body.runTime,
@@ -84,7 +109,8 @@ class MoviesHandler {
       await this.moviesService.updateMovie(req.params.id, req.body);
     } catch (err) {
       if (err instanceof ErrMovieNotFound) {
-        return res.send(`${err.message}`);
+        // return res.send(`${err.message}`);
+        return res.render('new-movie', { err });
       } else {
         console.log(`failed to update movie: ${err}`);
         return res.send('Internal server error');

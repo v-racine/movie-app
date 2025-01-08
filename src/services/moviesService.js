@@ -29,9 +29,12 @@ class MovieService {
   }
 
   async getMovie(id) {
-    const movieObj = await this.moviesRepo.getOne(id);
+    const existingMovie = await this.moviesRepo.getOne(id);
+    if (!existingMovie) {
+      throw new ErrMovieNotFound();
+    }
 
-    return movieObj;
+    return existingMovie;
   }
 
   async deleteMovie(id) {
