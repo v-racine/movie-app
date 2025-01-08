@@ -20,7 +20,19 @@ class MoviesHandler {
   }
 
   async getMovie(req, res) {
-    const movie = await this.moviesService.getMovie(req.params.id);
+    let movie;
+
+    try {
+      movie = await this.moviesService.getMovie(req.params.id);
+    } catch (err) {
+      if (err instanceof ErrMovieNotFound) {
+        return res.render('new-movie', { err });
+      } else {
+        console.log(`failed to find the movie: ${err}`);
+        return res.send('Internal server error');
+      }
+    }
+
     res.render('movie', { movie });
   }
 
@@ -32,13 +44,13 @@ class MoviesHandler {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      const errMsgs = errors.array().map((error) => error.msg);
+      errors.array().forEach((error) => req.flash('error', error.msg));
 
       return res.render('new-movie', {
+        flash: req.flash(),
         title: req.body.title,
         year: req.body.year,
         runTime: req.body.runTime,
-        errorMessages: errMsgs,
       });
     }
 
@@ -56,24 +68,38 @@ class MoviesHandler {
       }
     }
 
+    req.flash('success', 'Movie added!');
     res.redirect('/movies');
   }
 
   async updateMovie(req, res) {
-    res.render('edit-movie', { id: req.params.id });
+    let movie;
+    try {
+      movie = await this.moviesService.getMovie(req.params.id);
+    } catch (err) {
+      if (err instanceof ErrMovieNotFound) {
+        return res.render('new-movie', { err });
+      } else {
+        console.log(`failed to find the movie: ${err}`);
+        return res.send('Internal server error');
+      }
+    }
+
+    res.render('edit-movie', { movie, id: req.params.id });
   }
 
   async updateMoviePost(req, res) {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      const errMsgs = errors.array().map((error) => error.msg);
+      errors.array().forEach((error) => req.flash('error', error.msg));
 
-      return res.render('new-movie', {
+      return res.render('edit-movie', {
+        flash: req.flash(),
+        id: req.params.id,
         title: req.body.title,
         year: req.body.year,
         runTime: req.body.runTime,
-        errorMessages: errMsgs,
       });
     }
 
@@ -81,13 +107,14 @@ class MoviesHandler {
       await this.moviesService.updateMovie(req.params.id, req.body);
     } catch (err) {
       if (err instanceof ErrMovieNotFound) {
-        return res.send(`${err.message}`);
+        return res.render('new-movie', { err });
       } else {
         console.log(`failed to update movie: ${err}`);
         return res.send('Internal server error');
       }
     }
 
+    req.flash('success', 'Movie updated!');
     res.redirect('/movies');
   }
 

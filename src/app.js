@@ -1,4 +1,6 @@
 const express = require('express');
+const session = require('express-session');
+const flash = require('express-flash');
 
 const { parseTitle, parseYear, parseRuntime } = require('./middleware/parsers');
 
@@ -25,6 +27,28 @@ const AppFactory = (args) => {
 
   app.use(express.static('public'));
   app.use(express.urlencoded({ extended: false }));
+  app.use(
+    session({
+      cookie: {
+        httpOnly: true,
+        maxAge: 31 * 24 * 60 * 60 * 1000, // 31 days in milliseconds
+        path: '/',
+        secure: false,
+      },
+      name: 'movie-app-session-id',
+      resave: false,
+      saveUninitialized: true,
+      secret: 'this is not very secure',
+    }),
+  );
+  app.use(flash());
+
+  //middleware for flash messages before a redirect
+  app.use((req, res, next) => {
+    res.locals.flash = req.session.flash;
+    delete req.session.flash;
+    next();
+  });
 
   // create handlers
   const homeHandler = new HomeHandler();
