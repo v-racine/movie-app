@@ -152,6 +152,48 @@ describe('add a movie', () => {
     });
   });
 
+  describe('when: a user tries to enter a title that already exists', () => {
+    let rsp;
+
+    let movie = {
+      title: 'Point Break',
+      year: 1991,
+      runTime: 122,
+    };
+
+    beforeEach(async () => {
+      mockPgClient.dbQuery = jest.fn().mockImplementationOnce(() => {
+        return new Promise((resolve) => {
+          resolve({ rows: [movie] });
+        });
+      });
+
+      rsp = await request(app)
+        .post(`/movies/create`)
+        .send(`title=${movie.title}&year=${movie.year}&runTime=${movie.runTime}`);
+    });
+
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
+    test("then: we return 'Movie already exists", async () => {
+      expect(mockPgClient.dbQuery).toHaveBeenCalledTimes(1);
+
+      expect(mockPgClient.dbQuery).toHaveBeenNthCalledWith(
+        1,
+        'SELECT * FROM movies WHERE movie_title = $1',
+        movie.title,
+      );
+
+      const text = rsp.text;
+      expect(text).toContain('Movie already exists');
+
+      const status = rsp.status;
+      expect(status).toBe(200);
+    });
+  });
+
   describe('when: a user successfully adds a new movie', () => {
     let rsp;
 
@@ -162,7 +204,11 @@ describe('add a movie', () => {
     };
 
     beforeEach(async () => {
-      mockPgClient.dbQuery = jest.fn();
+      mockPgClient.dbQuery = jest.fn().mockImplementationOnce(() => {
+        return new Promise((resolve) => {
+          resolve({ rows: [] });
+        });
+      });
 
       rsp = await request(app)
         .post(`/movies/create`)
@@ -174,7 +220,16 @@ describe('add a movie', () => {
     });
 
     test('then: we add the movie to the db AND redirect user to all the movie titles', async () => {
-      expect(mockPgClient.dbQuery).toHaveBeenCalledWith(
+      expect(mockPgClient.dbQuery).toHaveBeenCalledTimes(2);
+
+      expect(mockPgClient.dbQuery).toHaveBeenNthCalledWith(
+        1,
+        'SELECT * FROM movies WHERE movie_title = $1',
+        movie.title,
+      );
+
+      expect(mockPgClient.dbQuery).toHaveBeenNthCalledWith(
+        2,
         'INSERT INTO movies (movie_title, movie_year, run_time) VALUES ($1, $2, $3)',
         movie.title,
         movie.year,

@@ -33,6 +33,8 @@ block main
           each message in errorMessages 
             p #{message}
           
+        if err != undefined 
+          p #{err}
           
     fieldset.actions
       input(type="submit" value="Add Movie")
