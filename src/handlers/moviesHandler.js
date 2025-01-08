@@ -45,14 +45,12 @@ class MoviesHandler {
 
     if (!errors.isEmpty()) {
       errors.array().forEach((error) => req.flash('error', error.msg));
-      // const errMsgs = errors.array().map((error) => error.msg);
 
       return res.render('new-movie', {
         flash: req.flash(),
         title: req.body.title,
         year: req.body.year,
         runTime: req.body.runTime,
-        // errorMessages: errMsgs,
       });
     }
 
@@ -109,7 +107,6 @@ class MoviesHandler {
       await this.moviesService.updateMovie(req.params.id, req.body);
     } catch (err) {
       if (err instanceof ErrMovieNotFound) {
-        // return res.send(`${err.message}`);
         return res.render('new-movie', { err });
       } else {
         console.log(`failed to update movie: ${err}`);
