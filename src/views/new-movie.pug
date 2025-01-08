@@ -29,9 +29,10 @@ block main
               placeholder="Run time"
               value=runTime)
         
-        if errorMessages !== undefined && errorMessages.length > 0
-          each message in errorMessages 
-            p #{message}
+        //- if errorMessages !== undefined && errorMessages.length > 0
+        //-   ul.flash
+        //-     each message in errorMessages 
+        //-       li.error= message
           
         if err != undefined 
           p #{err}

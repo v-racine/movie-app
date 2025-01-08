@@ -40,12 +40,37 @@ a {
 }
 
 ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  list-style: none;
+  display: inline-block;
 }
 
 li {
   margin: 1rem;
+}
+
+.flash {
+  font-size: 1.25rem;
+  font-weight: bold;
+  list-style-position: inside;
+  margin: 0 2rem;
+  max-width: 100%;
+}
+
+.flash li {
+  margin: 0.5rem auto;
+  padding: 0.5rem 2rem;
+}
+
+.error {
+  background-color: #ffcfbf;
+  color: #ff6633;
+}
+
+.success {
+  background-color: #a0f0a0;
+  color: #33cc99;
+}
+
+.info {
+  background-color: #cbe5f2;
+  color: #3399cc;
 }

@@ -32,13 +32,15 @@ class MoviesHandler {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      const errMsgs = errors.array().map((error) => error.msg);
+      errors.array().forEach((error) => req.flash('error', error.msg));
+      // const errMsgs = errors.array().map((error) => error.msg);
 
       return res.render('new-movie', {
+        flash: req.flash(),
         title: req.body.title,
         year: req.body.year,
         runTime: req.body.runTime,
-        errorMessages: errMsgs,
+        // errorMessages: errMsgs,
       });
     }
 
@@ -56,6 +58,7 @@ class MoviesHandler {
       }
     }
 
+    req.flash('success', 'Movie added!');
     res.redirect('/movies');
   }
 
@@ -67,13 +70,13 @@ class MoviesHandler {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      const errMsgs = errors.array().map((error) => error.msg);
+      errors.array().forEach((error) => req.flash('error', error.msg));
 
       return res.render('new-movie', {
+        flash: req.flash(),
         title: req.body.title,
         year: req.body.year,
         runTime: req.body.runTime,
-        errorMessages: errMsgs,
       });
     }
 
@@ -88,6 +91,7 @@ class MoviesHandler {
       }
     }
 
+    req.flash('success', 'Movie updated!');
     res.redirect('/movies');
   }
 
