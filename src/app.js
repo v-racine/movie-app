@@ -5,10 +5,14 @@ const morgan = require('morgan');
 
 const { parseTitle, parseYear, parseRuntime } = require('./middleware/parsers');
 
+const { HomeHandler } = require('./handlers/homeHandler');
 const { MoviesRepo } = require('./repositories/moviesRepo');
 const { MovieService } = require('./services/moviesService');
 const { MoviesHandler } = require('./handlers/moviesHandler');
-const { HomeHandler } = require('./handlers/homeHandler');
+
+const { ReviewsRepo } = require('./repositories/reviewsRepo');
+const { ReviewsService } = require('./services/reviewsService');
+
 
 const AppFactory = (args) => {
   //repos
@@ -17,8 +21,14 @@ const AppFactory = (args) => {
     client: args.pgClient,
   });
 
+  const reviewsRepo = new ReviewsRepo({
+    table: 'reviews',
+    client: args.pgClient,
+  });
+
   //services (business logic layer)
   const moviesService = new MovieService({ moviesRepo });
+  const reviewsService = new ReviewsService({ reviewsRepo });
 
   //create server (and middlewares)
   const app = express();
