@@ -45,11 +45,11 @@ class ReviewsRepo {
   }
 
   async create(attrs) {
-    const CREATE_REVIEW = `INSERT INTO ${this.table} (reviewer, grade, comments) VALUES ($1, $2, $3)`;
+    const CREATE_REVIEW = `INSERT INTO ${this.table} (reviewer, grade, comments) VALUES ($1, $2, $3, $4)`;
 
-    const { reviewer, grade, comments } = attrs;
+    const { reviewer, grade, comments, movie_id } = attrs;
 
-    await this.client.dbQuery(CREATE_REVIEW, reviewer, grade, comments);
+    await this.client.dbQuery(CREATE_REVIEW, reviewer, grade, comments, movie_id);
   }
 
   async update(id, updatedReview) {
