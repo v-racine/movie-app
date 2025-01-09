@@ -3,7 +3,6 @@ const session = require('express-session');
 const flash = require('express-flash');
 
 const { parseTitle, parseYear, parseRuntime } = require('./middleware/parsers');
-const { ErrorHandler } = require('./middleware/errorHandler');
 
 const { MoviesRepo } = require('./repositories/moviesRepo');
 const { MovieService } = require('./services/moviesService');
@@ -43,8 +42,6 @@ const AppFactory = (args) => {
     }),
   );
   app.use(flash());
-  app.use(ErrorHandler);
-
   //middleware for flash messages before a redirect
   app.use((req, res, next) => {
     res.locals.flash = req.session.flash;
@@ -57,18 +54,22 @@ const AppFactory = (args) => {
   const moviesHandler = new MoviesHandler({ moviesService });
 
   // register handlers to routes
-  app.get('/', homeHandler.getHomePage);
-  app.get('/movies', moviesHandler.getAllMovies);
-  app.get('/movies/create', moviesHandler.createMovie);
-  app.post('/movies/create', [parseTitle, parseYear, parseRuntime], moviesHandler.createMoviePost);
-  app.get('/movies/:id', moviesHandler.getMovie);
-  app.get('/movies/update/:id', moviesHandler.updateMovie);
+  app.get('/', homeHandler.try(homeHandler.getHomePage));
+  app.get('/movies', moviesHandler.try(moviesHandler.getAllMovies));
+  app.get('/movies/create', moviesHandler.try(moviesHandler.createMovie));
+  app.post(
+    '/movies/create',
+    [parseTitle, parseYear, parseRuntime],
+    moviesHandler.try(moviesHandler.createMoviePost),
+  );
+  app.get('/movies/:id', moviesHandler.try(moviesHandler.getMovie));
+  app.get('/movies/update/:id', moviesHandler.try(moviesHandler.updateMovie));
   app.post(
     '/movies/update/:id',
     [parseTitle, parseYear, parseRuntime],
-    moviesHandler.updateMoviePost,
+    moviesHandler.try(moviesHandler.updateMoviePost),
   );
-  app.post('/movies/delete/:id', moviesHandler.deleteMovie);
+  app.post('/movies/delete/:id', moviesHandler.try(moviesHandler.deleteMovie));
 
   return app;
 };
