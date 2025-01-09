@@ -13,7 +13,6 @@ const { MoviesHandler } = require('./handlers/moviesHandler');
 const { ReviewsRepo } = require('./repositories/reviewsRepo');
 const { ReviewsService } = require('./services/reviewsService');
 
-
 const AppFactory = (args) => {
   //repos
   const moviesRepo = new MoviesRepo({
