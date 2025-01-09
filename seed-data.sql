@@ -7,3 +7,6 @@ VALUES
 ('The Lives of Others', 2006, 137),
 ('No Country for Old Men', 2007, 122),
 ('Nosferatu', 2024, 132); 
+
+INSERT INTO reviews (reviewer, grade, comments, movie_id)
+VALUES ('yr chicken', 'A+', 'me and my chicken', 2);
