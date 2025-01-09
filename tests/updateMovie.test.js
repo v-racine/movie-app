@@ -16,7 +16,19 @@ describe('update a movie', () => {
     let rsp;
     let id = 21;
 
+    let movie = {
+      movie_title: 'Point Break',
+      movie_year: 1991,
+      run_time: 122,
+    };
+
     beforeEach(async () => {
+      mockPgClient.dbQuery = jest.fn().mockImplementationOnce(() => {
+        return new Promise((resolve) => {
+          resolve({ rows: [movie] });
+        });
+      });
+
       rsp = await request(app).get(`/movies/update/${id}`).send();
     });
 

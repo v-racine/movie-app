@@ -1,5 +1,8 @@
-class HomeHandler {
+const { BaseHandler } = require('./baseHandler');
+
+class HomeHandler extends BaseHandler {
   constructor() {
+    super();
     this.getHomePage = this.getHomePage.bind(this);
   }
 

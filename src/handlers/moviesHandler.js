@@ -1,8 +1,10 @@
+const { BaseHandler } = require('./baseHandler');
 const { ErrMovieNotFound, ErrMovieAlreadyExists } = require('../services/moviesService');
 const { validationResult } = require('express-validator');
 
-class MoviesHandler {
+class MoviesHandler extends BaseHandler {
   constructor(args) {
+    super();
     this.moviesService = args.moviesService;
 
     this.getAllMovies = this.getAllMovies.bind(this);
