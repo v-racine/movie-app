@@ -1,6 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const flash = require('express-flash');
+const morgan = require('morgan');
 
 const { parseTitle, parseYear, parseRuntime } = require('./middleware/parsers');
 
@@ -26,6 +27,7 @@ const AppFactory = (args) => {
   app.set('view engine', 'pug');
 
   app.use(express.static('public'));
+  app.use(morgan('common'));
   app.use(express.urlencoded({ extended: false }));
   app.use(
     session({
