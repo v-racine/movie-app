@@ -20,10 +20,11 @@ class ReviewsService {
 
     const reviewInfo = arrOfReviewObjs.map((reviewObject) => {
       return {
-        reviewer: reviewObject.review,
+        id: reviewObject.id,
+        reviewer: reviewObject.reviewer,
         grade: reviewObject.grade,
         comments: reviewObject.comments,
-        movie: reviewObject.movie_id,
+        movie: reviewObject.movie_title,
       };
     });
 
@@ -37,30 +38,6 @@ class ReviewsService {
     }
 
     return existingReview;
-  }
-
-  async reviewMovie(reviewer, grade, comments, movieId) {
-    const existingReview = await this.reviewsRepo.getOneBy({ reviewer, movieId });
-    if (existingReview) {
-      throw new ErrReviewAlreadyExists();
-    }
-
-    await this.reviewsRepo.create({ reviewer, grade, comments });
-  }
-
-  async deleteReview(id) {
-    await this.reviewsRepo.delete(id);
-  }
-
-  async updateReview(id, attrs) {
-    const existingReview = await this.reviewsRepo.getOne(id);
-    if (!existingReview) {
-      throw new ErrReviewNotFound();
-    }
-
-    Object.assign(existingReview, attrs);
-
-    await this.reviewsRepo.update(id, existingReview);
   }
 
   async getAllReviewsOfOneMovie() {
@@ -91,6 +68,30 @@ class ReviewsService {
 
     return reviewInfo;
   }
+
+  async reviewMovie(reviewer, grade, comments, movieId) {
+    const existingReview = await this.reviewsRepo.getOneBy({ reviewer, movieId });
+    if (existingReview) {
+      throw new ErrReviewAlreadyExists();
+    }
+
+    await this.reviewsRepo.create({ reviewer, grade, comments });
+  }
+
+  async updateReview(id, attrs) {
+    const existingReview = await this.reviewsRepo.getOne(id);
+    if (!existingReview) {
+      throw new ErrReviewNotFound();
+    }
+
+    Object.assign(existingReview, attrs);
+
+    await this.reviewsRepo.update(id, existingReview);
+  }
+
+  async deleteReview(id) {
+    await this.reviewsRepo.delete(id);
+  }
 }
 
-module.exports = { ReviewsService };
+module.exports = { ReviewsService, ErrReviewAlreadyExists, ErrReviewNotFound };

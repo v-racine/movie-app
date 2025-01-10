@@ -24,8 +24,14 @@
   },
   "devDependencies": {
     "jest": "~29.7.0",
+    "jest-serializer-html": "~7.1.0",
     "nodemon": "~3.1.4",
     "prettier": "~3.4.1",
     "supertest": "~7.0.0"
+  },
+  "jest": {
+    "snapshotSerializers": [
+      "jest-serializer-html"
+    ]
   }
 }

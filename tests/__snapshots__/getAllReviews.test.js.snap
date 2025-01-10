@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`get all movies when: users want to view all movies then: we return all the movie titles 1`] = `
+exports[`get all reviews when: user wants to view ALL reviews then: we return all the reviews with the movie title and the grade 1`] = `
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
@@ -20,26 +20,17 @@ exports[`get all movies when: users want to view all movies then: we return all 
     </header>
     <main>
       <p>
-        Here are your favourite movies:
-        <form action="/movies/create"
-              method="get"
-        >
-          <button>
-            Add a Movie
-          </button>
-        </form>
+        Here are the Movie Reviews:
       </p>
       <ul>
       </ul>
       <p>
       </p>
-      <a href="/movies/1">
-        Nosferatu
-      </a>
-      <p>
-      </p>
-      <a href="/movies/2">
+      <a href="/reviews/3">
         Point Break
+        <p>
+          c stoopid chicken movie
+        </p>
       </a>
     </main>
   </body>
