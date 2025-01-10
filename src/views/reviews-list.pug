@@ -1,0 +1,15 @@
+extends layout 
+
+block main 
+  p Here are the Movie Reviews:
+
+    //- block Movies 
+    //- form(action="/movies/create" method="get")
+    //-   button Add a Movie
+
+  ul
+  each review in reviews
+    p 
+    a(href=`/reviews/${review.id}`)= review.movie 
+      p #{review.grade} #{review.comments}
+      

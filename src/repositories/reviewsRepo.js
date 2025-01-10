@@ -5,7 +5,10 @@ class ReviewsRepo {
   }
 
   async getAll() {
-    const ALL_REVIEWS = `SELECT * FROM ${this.table} ORDER BY id`;
+    const ALL_REVIEWS = `
+    SELECT ${this.table}.*, movie_title FROM ${this.table} 
+    JOIN movies 
+    ON movies.id = reviews.movie_id`;
 
     const result = await this.client.dbQuery(ALL_REVIEWS);
 

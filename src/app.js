@@ -6,12 +6,14 @@ const morgan = require('morgan');
 const { parseTitle, parseYear, parseRuntime } = require('./middleware/parsers');
 
 const { HomeHandler } = require('./handlers/homeHandler');
+
 const { MoviesRepo } = require('./repositories/moviesRepo');
 const { MovieService } = require('./services/moviesService');
 const { MoviesHandler } = require('./handlers/moviesHandler');
 
 const { ReviewsRepo } = require('./repositories/reviewsRepo');
 const { ReviewsService } = require('./services/reviewsService');
+const { ReviewsHandler } = require('./handlers/reviewsHandler');
 
 const AppFactory = (args) => {
   //repos
@@ -63,9 +65,11 @@ const AppFactory = (args) => {
   // create handlers
   const homeHandler = new HomeHandler();
   const moviesHandler = new MoviesHandler({ moviesService });
+  const reviewsHandler = new ReviewsHandler({ reviewsService });
 
   // register handlers to routes
   app.get('/', homeHandler.try(homeHandler.getHomePage));
+
   app.get('/movies', moviesHandler.try(moviesHandler.getAllMovies));
   app.get('/movies/create', moviesHandler.try(moviesHandler.createMovie));
   app.post(
@@ -81,6 +85,9 @@ const AppFactory = (args) => {
     moviesHandler.try(moviesHandler.updateMoviePost),
   );
   app.post('/movies/delete/:id', moviesHandler.try(moviesHandler.deleteMovie));
+
+  app.get('/reviews', reviewsHandler.try(reviewsHandler.getAllReviews));
+  app.get('/reviews/:id', reviewsHandler.try(reviewsHandler.getReview));
 
   return app;
 };
