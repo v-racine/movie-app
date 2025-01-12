@@ -9,8 +9,8 @@ class ReviewsHandler extends BaseHandler {
 
     this.getAllReviews = this.getAllReviews.bind(this);
     this.getReview = this.getReview.bind(this);
-    // this.getAllReviewsOfOneMovie = this.getAllReviewsOfOneMovie.bind(this);
-    // this.getAllReviewsByOneReviewer = this.getAllReviewsByOneReviewer.bind(this);
+    this.getAllReviewsOfOneMovie = this.getAllReviewsOfOneMovie.bind(this);
+    this.getAllReviewsByOneReviewer = this.getAllReviewsByOneReviewer.bind(this);
 
     // this.reviewMovie = this.reviewMovie.bind(this);
     // this.reviewMoviePost = this.reviewMoviePost.bind(this);
@@ -33,8 +33,8 @@ class ReviewsHandler extends BaseHandler {
       review = await this.reviewsService.getReview(req.params.id);
     } catch (err) {
       if (err instanceof ErrReviewNotFound) {
-        //TODO: add a real view later
-        return res.send(err);
+        //TODO: add a real view later (and then add a test)
+        return res.send(err.message);
       } else {
         console.log(`failed to find the review: ${err}`);
         return res.send('Internal server error');
@@ -42,6 +42,17 @@ class ReviewsHandler extends BaseHandler {
     }
 
     res.render('review', { review });
+  }
+
+  async getAllReviewsOfOneMovie(req, res) {
+    const reviews = await this.reviewsService.getAllReviewsOfOneMovie(req.params.id);
+    res.render('reviews-list', { reviews });
+  }
+
+  async getAllReviewsByOneReviewer(req, res) {
+    const reviewer = req.params.reviewer;
+    const reviews = await this.reviewsService.getAllReviewsByOneReviewer(reviewer);
+    res.render('reviews-list', { reviews });
   }
 
   async deleteReview(req, res) {

@@ -88,6 +88,12 @@ const AppFactory = (args) => {
 
   app.get('/reviews', reviewsHandler.try(reviewsHandler.getAllReviews));
   app.get('/reviews/:id', reviewsHandler.try(reviewsHandler.getReview));
+  app.get('/movies/:id/reviews', reviewsHandler.try(reviewsHandler.getAllReviewsOfOneMovie));
+  app.get(
+    '/reviews/reviewers/:reviewer',
+    reviewsHandler.try(reviewsHandler.getAllReviewsByOneReviewer),
+  );
+  app.post('/reviews/delete/:id', reviewsHandler.try(reviewsHandler.deleteReview));
 
   return app;
 };
