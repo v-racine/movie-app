@@ -21,17 +21,31 @@ exports[`get all reviews when: user wants to view ALL reviews by ONE reviewwer t
     <main>
       <p>
         Here are the Movie Reviews:
+        <form action="/reviews/create"
+              method="get"
+        >
+          <button>
+            Add a Review!
+          </button>
+        </form>
       </p>
       <ul>
       </ul>
-      <p>
-      </p>
-      <a href="/reviews/3">
-        Point Break
-        <p>
-          c stoopid chicken movie
-        </p>
-      </a>
+      <table>
+        <tr>
+          <td>
+            <a href="/reviews/3">
+              Point Break
+            </a>
+          </td>
+          <td>
+            | Reviewed by: my chicken
+          </td>
+          <td>
+            | Grade: c
+          </td>
+        </tr>
+      </table>
     </main>
   </body>
 </html>
@@ -58,17 +72,31 @@ exports[`get all reviews when: user wants to view ALL reviews of ONE movie then:
     <main>
       <p>
         Here are the Movie Reviews:
+        <form action="/reviews/create"
+              method="get"
+        >
+          <button>
+            Add a Review!
+          </button>
+        </form>
       </p>
       <ul>
       </ul>
-      <p>
-      </p>
-      <a href="/reviews/3">
-        Point Break
-        <p>
-          c stoopid chicken movie
-        </p>
-      </a>
+      <table>
+        <tr>
+          <td>
+            <a href="/reviews/3">
+              Point Break
+            </a>
+          </td>
+          <td>
+            | Reviewed by: my chicken
+          </td>
+          <td>
+            | Grade: c
+          </td>
+        </tr>
+      </table>
     </main>
   </body>
 </html>
@@ -95,17 +123,31 @@ exports[`get all reviews when: user wants to view ALL reviews then: we return al
     <main>
       <p>
         Here are the Movie Reviews:
+        <form action="/reviews/create"
+              method="get"
+        >
+          <button>
+            Add a Review!
+          </button>
+        </form>
       </p>
       <ul>
       </ul>
-      <p>
-      </p>
-      <a href="/reviews/3">
-        Point Break
-        <p>
-          c stoopid chicken movie
-        </p>
-      </a>
+      <table>
+        <tr>
+          <td>
+            <a href="/reviews/3">
+              Point Break
+            </a>
+          </td>
+          <td>
+            | Reviewed by: my chicken
+          </td>
+          <td>
+            | Grade: c
+          </td>
+        </tr>
+      </table>
     </main>
   </body>
 </html>

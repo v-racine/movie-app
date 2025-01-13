@@ -13,7 +13,7 @@ class ReviewsRepo {
   }
 
   async getOne(id) {
-    const REVIEW = `SELECT * FROM ${this.table} WHERE id = $1`;
+    const REVIEW = `SELECT ${this.table}.*, movie_title FROM ${this.table} JOIN movies ON movies.id = reviews.movie_id WHERE reviews.id = $1`;
 
     const result = await this.client.dbQuery(REVIEW, id);
 

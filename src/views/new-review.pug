@@ -1,0 +1,44 @@
+extends layout 
+
+block main 
+  if err != undefined 
+    p #{err}
+
+  form(action="/reviews/create" method="post")
+    dl
+      dt
+        label(for="title") Enter the title of a new movie:
+      dd
+        input(type="text"
+              id="title"
+              name="title"
+              placeholder="Movie Title"
+              value=title)
+      dt
+        label(for="reviewer") Enter your name:
+      dd
+        input(type="text"
+              id="reviewer"
+              name="review"
+              placeholder="name"
+              value=reviewer)
+      dt
+        label(for="grade") Enter your grade:
+      dd
+        input(type="text"
+              id="grade"
+              name="grade"
+              placeholder="e.g. A+, A, A-, B+..."
+              value=grade)
+      dt
+        label(for="comments") What did you think of the movie?
+      dd
+        textarea#comments(name='comments', rows='6', cols='80', placeholder='Type your comments here')
+
+          
+    fieldset.actions
+      input(type="submit" value="Submit Review")
+      input(type='reset', value='Clear Form')
+
+
+      

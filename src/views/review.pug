@@ -2,21 +2,24 @@ extends layout
 
 block main 
   p Here is your selected review:
-
-  table
-    tbody
-      tr
-        td 
-          b Reviewed by: 
-          | #{review.reviewer}
-      tr
-        td 
-          b Grade: 
-          | #{review.grade}
-      tr
-        td 
-          b Comments: 
-          | #{review.comments} 
+    table
+      tbody
+        tr
+          td 
+            b Movie Title: 
+            | #{review.movie_title}
+        tr
+          td 
+            b Reviewed by: 
+            | #{review.reviewer}
+        tr
+          td 
+            b Grade: 
+            | #{review.grade}
+        tr
+          td 
+            b Comments: 
+            | #{review.comments} 
 
   footer  
     form(action=`/reviews/update/${review.id}` method="get")
