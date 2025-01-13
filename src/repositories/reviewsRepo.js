@@ -21,18 +21,34 @@ class ReviewsRepo {
   }
 
   async getOneBy(attrs) {
+    const FETCH_MOVIE_ID = `SELECT id FROM movies WHERE movie_title = $1`;
+
+    let { title } = attrs;
+
+    const firstResult = await this.client.dbQuery(FETCH_MOVIE_ID, title);
+
+    const movieId = firstResult.rows[0].id;
+
     let query = `SELECT * FROM ${this.table} WHERE `;
 
     const params = [];
+
     let count = 1;
 
-    const entries = Object.entries(attrs);
+    const { reviewer } = attrs;
+
+    const newObj = {
+      reviewer: reviewer,
+      movie_id: movieId,
+    };
+
+    const entries = Object.entries(newObj);
 
     for (const [key, value] of entries) {
       if (count === entries.length) {
         query += `${key} = $${count}`;
       } else {
-        query += `${key} = $${count} AND`;
+        query += `${key} = $${count} AND `;
       }
 
       params.push(value);
@@ -45,11 +61,15 @@ class ReviewsRepo {
   }
 
   async create(attrs) {
-    const CREATE_REVIEW = `INSERT INTO ${this.table} (reviewer, grade, comments) VALUES ($1, $2, $3, $4)`;
+    const FETCH_MOVIE_ID = `SELECT id FROM movies WHERE movie_title = $1`;
+    let { title } = attrs;
+    const result = await this.client.dbQuery(FETCH_MOVIE_ID, title);
+    const movieId = result.rows[0].id;
 
-    const { reviewer, grade, comments, movie_id } = attrs;
+    const CREATE_REVIEW = `INSERT INTO ${this.table} (reviewer, grade, comments, movie_id) VALUES ($1, $2, $3, $4)`;
+    const { reviewer, grade, comments } = attrs;
 
-    await this.client.dbQuery(CREATE_REVIEW, reviewer, grade, comments, movie_id);
+    await this.client.dbQuery(CREATE_REVIEW, reviewer, grade, comments, movieId);
   }
 
   async update(id, updatedReview) {

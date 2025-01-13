@@ -12,14 +12,14 @@ block main
         input(type="text"
               id="title"
               name="title"
-              placeholder="Movie Title"
+              placeholder="title"
               value=title)
       dt
         label(for="reviewer") Enter your name:
       dd
         input(type="text"
               id="reviewer"
-              name="review"
+              name="reviewer"
               placeholder="name"
               value=reviewer)
       dt
@@ -28,12 +28,12 @@ block main
         input(type="text"
               id="grade"
               name="grade"
-              placeholder="e.g. A+, A, A-, B+..."
+              placeholder="e.g. A+, A, A-, B+, etc."
               value=grade)
       dt
         label(for="comments") What did you think of the movie?
       dd
-        textarea#comments(name='comments', rows='6', cols='80', placeholder='Type your comments here')
+        textarea#comments(name='comments', rows='6', cols='80', placeholder='type your comments here')
 
           
     fieldset.actions

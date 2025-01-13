@@ -72,13 +72,13 @@ class ReviewsService {
     return reviewInfo;
   }
 
-  async reviewMovie(reviewer, grade, comments, movieId) {
-    const existingReview = await this.reviewsRepo.getOneBy({ reviewer, movieId });
+  async reviewMovie(title, reviewer, grade, comments) {
+    const existingReview = await this.reviewsRepo.getOneBy({ title, reviewer });
     if (existingReview) {
       throw new ErrReviewAlreadyExists();
     }
 
-    await this.reviewsRepo.create({ reviewer, grade, comments });
+    await this.reviewsRepo.create({ title, reviewer, grade, comments });
   }
 
   async updateReview(id, attrs) {

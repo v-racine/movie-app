@@ -12,8 +12,8 @@ class ReviewsHandler extends BaseHandler {
     this.getAllReviewsOfOneMovie = this.getAllReviewsOfOneMovie.bind(this);
     this.getAllReviewsByOneReviewer = this.getAllReviewsByOneReviewer.bind(this);
 
-    // this.reviewMovie = this.reviewMovie.bind(this);
-    // this.reviewMoviePost = this.reviewMoviePost.bind(this);
+    this.reviewMovie = this.reviewMovie.bind(this);
+    this.reviewMoviePost = this.reviewMoviePost.bind(this);
     // this.updateReview = this.updateReview.bind(this);
     // this.updateReviewPost = this.updateReviewPost.bind(this);
 
@@ -53,6 +53,44 @@ class ReviewsHandler extends BaseHandler {
     const reviewer = req.params.reviewer;
     const reviews = await this.reviewsService.getAllReviewsByOneReviewer(reviewer);
     res.render('reviews-list', { reviews });
+  }
+
+  async reviewMovie(req, res) {
+    res.render('new-review');
+  }
+
+  async reviewMoviePost(req, res) {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      errors.array().forEach((error) => req.flash('error', error.msg));
+
+      return res.render('new-review', {
+        flash: req.flash(),
+
+        title: req.body.title,
+        reviewer: req.body.reviewer,
+        grade: req.body.grade,
+        comments: req.body.comments,
+      });
+    }
+
+    const { title, reviewer, grade, comments } = req.body;
+
+    try {
+      await this.reviewsService.reviewMovie(title, reviewer, grade, comments);
+    } catch (err) {
+      if (err instanceof ErrReviewAlreadyExists) {
+        console.log(err);
+        return res.render('new-review', { err });
+      } else {
+        console.log(`failed to create new movie: ${err}`);
+        return res.send('Internal server error');
+      }
+    }
+
+    req.flash('success', 'Review added!');
+    res.redirect('/reviews');
   }
 
   async deleteReview(req, res) {
