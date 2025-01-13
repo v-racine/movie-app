@@ -25,7 +25,7 @@ exports[`get all reviews when: user wants to view ALL reviews by ONE reviewwer t
               method="get"
         >
           <button>
-            Add a Review!
+            Add a Review
           </button>
         </form>
       </p>
@@ -39,7 +39,10 @@ exports[`get all reviews when: user wants to view ALL reviews by ONE reviewwer t
             </a>
           </td>
           <td>
-            | Reviewed by: my chicken
+            | Reviewd by:
+            <a href="/reviews/reviewers/my chicken">
+              my chicken
+            </a>
           </td>
           <td>
             | Grade: c
@@ -76,7 +79,7 @@ exports[`get all reviews when: user wants to view ALL reviews of ONE movie then:
               method="get"
         >
           <button>
-            Add a Review!
+            Add a Review
           </button>
         </form>
       </p>
@@ -90,7 +93,10 @@ exports[`get all reviews when: user wants to view ALL reviews of ONE movie then:
             </a>
           </td>
           <td>
-            | Reviewed by: my chicken
+            | Reviewd by:
+            <a href="/reviews/reviewers/my chicken">
+              my chicken
+            </a>
           </td>
           <td>
             | Grade: c
@@ -127,7 +133,7 @@ exports[`get all reviews when: user wants to view ALL reviews then: we return al
               method="get"
         >
           <button>
-            Add a Review!
+            Add a Review
           </button>
         </form>
       </p>
@@ -141,7 +147,10 @@ exports[`get all reviews when: user wants to view ALL reviews then: we return al
             </a>
           </td>
           <td>
-            | Reviewed by: my chicken
+            | Reviewd by:
+            <a href="/reviews/reviewers/my chicken">
+              my chicken
+            </a>
           </td>
           <td>
             | Grade: c

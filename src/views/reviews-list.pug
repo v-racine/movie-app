@@ -4,7 +4,7 @@ block main
   p Here are the Movie Reviews:
 
     form(action="/reviews/create" method="get")
-      button Add a Review! 
+      button Add a Review 
 
   block reviews
     ul
@@ -13,10 +13,8 @@ block main
         tr 
           td 
             a(href=`/reviews/${review.id}`)= review.movie
-
-          td | Reviewed by: #{review.reviewer}
-
+          td | Reviewd by: 
+            a(href=`/reviews/reviewers/${review.reviewer}`)= review.reviewer 
           td | Grade: #{review.grade} 
-
          
         

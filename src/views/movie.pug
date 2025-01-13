@@ -18,6 +18,9 @@ block main
           b Run-Time: 
           | #{movie.run_time} minutes
 
+    form(action=`/movies/${movie.id}/reviews` method="get")
+      button See Reviews  
+
   footer  
     form(action=`/movies/update/${movie.id}` method="get")
       button Edit Movie  

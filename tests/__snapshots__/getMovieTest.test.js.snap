@@ -49,6 +49,13 @@ exports[`get a movie when: users want to view ONE movie then: we return all the 
             </td>
           </tr>
         </tbody>
+        <form action="/movies/2/reviews"
+              method="get"
+        >
+          <button>
+            See Reviews
+          </button>
+        </form>
       </table>
       <footer>
         <form action="/movies/update/2"
