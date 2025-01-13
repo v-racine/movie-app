@@ -66,12 +66,8 @@ class ReviewsRepo {
     await this.client.dbQuery(DELETE_REVIEW, id);
   }
 
-  async getAllReviewsForOneMovie(movieId) {
-    const ALL_REVIEWS_OF_ONE_MOVIE = `
-    SELECT * FROM ${this.table} 
-    JOIN movies 
-    ON movies.id = reviews.movie_id
-    WHERE movies.id = $1`;
+  async getAllReviewsOfOneMovie(movieId) {
+    const ALL_REVIEWS_OF_ONE_MOVIE = `SELECT * FROM ${this.table} JOIN movies ON movies.id = reviews.movie_id WHERE movies.id = $1`;
 
     const result = await this.client.dbQuery(ALL_REVIEWS_OF_ONE_MOVIE, movieId);
 
@@ -79,11 +75,7 @@ class ReviewsRepo {
   }
 
   async getAllReviewsByOneReviewer(reviewer) {
-    const ALL_REVIEWS_BY_ONE_REVIEWER = `
-    SELECT ${this.table}.*, movie_title FROM ${this.table} 
-    JOIN movies 
-    ON movies.id = reviews.movie_id
-    WHERE reviewer = $1`;
+    const ALL_REVIEWS_BY_ONE_REVIEWER = `SELECT ${this.table}.*, movie_title FROM ${this.table} JOIN movies ON movies.id = reviews.movie_id WHERE reviewer = $1`;
 
     const result = await this.client.dbQuery(ALL_REVIEWS_BY_ONE_REVIEWER, reviewer);
 

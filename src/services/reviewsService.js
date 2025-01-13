@@ -40,26 +40,29 @@ class ReviewsService {
     return existingReview;
   }
 
-  async getAllReviewsOfOneMovie() {
-    const arrOfReviewObjs = await this.reviewsRepo.getAllReviewsOfOneMovie();
+  async getAllReviewsOfOneMovie(movieId) {
+    const arrOfReviewObjs = await this.reviewsRepo.getAllReviewsOfOneMovie(movieId);
 
     const reviewInfo = arrOfReviewObjs.map((reviewObject) => {
       return {
-        reviewer: reviewObject.review,
+        id: reviewObject.id,
+        reviewer: reviewObject.reviewer,
         grade: reviewObject.grade,
         comments: reviewObject.comments,
+        movie: reviewObject.movie_title,
       };
     });
 
     return reviewInfo;
   }
 
-  async getAllReviewsByOneReviewer() {
-    const arrOfReviewObjs = await this.reviewsRepo.getAllReviewsByOneReviewer();
+  async getAllReviewsByOneReviewer(reviewer) {
+    const arrOfReviewObjs = await this.reviewsRepo.getAllReviewsByOneReviewer(reviewer);
 
     const reviewInfo = arrOfReviewObjs.map((reviewObject) => {
       return {
-        reviewer: reviewObject.review,
+        id: reviewObject.id,
+        reviewer: reviewObject.reviewer,
         grade: reviewObject.grade,
         comments: reviewObject.comments,
         movie: reviewObject.movie_title,
