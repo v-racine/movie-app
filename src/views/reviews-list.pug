@@ -3,13 +3,20 @@ extends layout
 block main 
   p Here are the Movie Reviews:
 
-    //- block Movies 
-    //- form(action="/movies/create" method="get")
-    //-   button Add a Movie
+    form(action="/reviews/create" method="get")
+      button Add a Review! 
 
-  ul
-  each review in reviews
-    p 
-    a(href=`/reviews/${review.id}`)= review.movie 
-      p #{review.grade} #{review.comments}
-      
+  block reviews
+    ul
+    each review in reviews
+      table 
+        tr 
+          td 
+            a(href=`/reviews/${review.id}`)= review.movie
+
+          td | Reviewed by: #{review.reviewer}
+
+          td | Grade: #{review.grade} 
+
+         
+        

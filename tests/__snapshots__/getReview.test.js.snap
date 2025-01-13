@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`get a movie when: users want to view ONE movie then: we return all the information about that ONE review 1`] = `
+exports[`get a review when: users want to view ONE review then: we return all the information about that ONE review 1`] = `
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
@@ -21,35 +21,43 @@ exports[`get a movie when: users want to view ONE movie then: we return all the 
     <main>
       <p>
         Here is your selected review:
+        <table>
+          <tbody>
+            <tr>
+              <td>
+                <b>
+                  Movie Title:
+                </b>
+                Point Break
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <b>
+                  Reviewed by:
+                </b>
+                my chicken
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <b>
+                  Grade:
+                </b>
+                c
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <b>
+                  Comments:
+                </b>
+                stoopid chicken movie
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </p>
-      <table>
-        <tbody>
-          <tr>
-            <td>
-              <b>
-                Reviewed by:
-              </b>
-              my chicken
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <b>
-                Grade:
-              </b>
-              c
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <b>
-                Comments:
-              </b>
-              stoopid chicken movie
-            </td>
-          </tr>
-        </tbody>
-      </table>
       <footer>
         <form action="/reviews/update/3"
               method="get"

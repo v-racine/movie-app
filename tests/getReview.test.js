@@ -5,14 +5,14 @@ Config.Get(process.env);
 const AppFactory = require('../src/app');
 const request = require('supertest');
 
-describe('get a movie', () => {
+describe('get a review', () => {
   const mockPgClient = {};
 
   const app = AppFactory({
     pgClient: mockPgClient,
   });
 
-  describe('when: users want to view ONE movie', () => {
+  describe('when: users want to view ONE review', () => {
     let rsp;
     let id = 3;
 
@@ -45,7 +45,7 @@ describe('get a movie', () => {
 
     test('then: we return all the information about that ONE review', async () => {
       expect(mockPgClient.dbQuery).toHaveBeenCalledWith(
-        'SELECT * FROM reviews WHERE id = $1',
+        'SELECT reviews.*, movie_title FROM reviews JOIN movies ON movies.id = reviews.movie_id WHERE reviews.id = $1',
         id.toString(),
       );
 
