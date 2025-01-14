@@ -1,6 +1,9 @@
 extends layout 
 
 block main 
+  if err != undefined 
+    p #{err}
+    
   p Here are the Movie Reviews:
 
     form(action="/reviews/create" method="get")
