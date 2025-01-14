@@ -10,6 +10,7 @@ const {
   parseReviewer,
   parseGrade,
   parseComments,
+  parseMovieTitle,
 } = require('./middleware/parsers');
 
 const { HomeHandler } = require('./handlers/homeHandler');
@@ -109,7 +110,11 @@ const AppFactory = (args) => {
   );
 
   app.get('/reviews/update/:id', reviewsHandler.try(reviewsHandler.updateReview));
-
+  app.post(
+    '/reviews/update/:id',
+    [parseReviewer, parseGrade, parseComments],
+    reviewsHandler.try(reviewsHandler.updateReviewPost),
+  );
   app.post('/reviews/delete/:id', reviewsHandler.try(reviewsHandler.deleteReview));
 
   return app;

@@ -1,5 +1,248 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`update a movie when: a user does NOT enter a valid grade then: we return 'Invalid grade 1`] = `
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>
+      The Ultimate Movie App
+    </title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"
+          href="/stylesheets/application.css"
+    >
+  </head>
+  <body>
+    <header>
+      <h1>
+        The Ultimate Movie App
+      </h1>
+    </header>
+    <main>
+      <ul>
+        <li class="flash error">
+          Invalid grade
+        </li>
+      </ul>
+      <form action="/reviews/update/52"
+            method="post"
+      >
+        <dl>
+          <dt>
+            <label for="reviewer">
+              Edit your name:
+            </label>
+          </dt>
+          <dd>
+            <input type="text"
+                   id="reviewer"
+                   name="reviewer"
+                   value="Phillips"
+            >
+          </dd>
+          <dt>
+            <label for="grade">
+              Edit your grade:
+            </label>
+          </dt>
+          <dd>
+            <input type="text"
+                   id="grade"
+                   name="grade"
+                   value="poop"
+            >
+          </dd>
+          <dt>
+            <label for="comments">
+              Edit your comments:
+            </label>
+          </dt>
+          <dd>
+            <textarea id="comments"
+                      name="comments"
+                      rows="6"
+                      cols="80"
+            >
+            </textarea>
+          </dd>
+        </dl>
+        <fieldset class="actions">
+          <input type="submit"
+                 value="Update Review"
+          >
+          <input type="reset"
+                 value="Clear Form"
+          >
+        </fieldset>
+      </form>
+    </main>
+  </body>
+</html>
+`;
+
+exports[`update a movie when: a user does NOT enter a valid reviewer NOR a valid grade then: we return 'Reviewer's name must be between 1 and 250 characters' AND 'Invalid grade 1`] = `
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>
+      The Ultimate Movie App
+    </title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"
+          href="/stylesheets/application.css"
+    >
+  </head>
+  <body>
+    <header>
+      <h1>
+        The Ultimate Movie App
+      </h1>
+    </header>
+    <main>
+      <ul>
+        <li class="flash error">
+          Reviewer's name must be between 1 and 250 characters
+        </li>
+        <li class="flash error">
+          Invalid grade
+        </li>
+      </ul>
+      <form action="/reviews/update/52"
+            method="post"
+      >
+        <dl>
+          <dt>
+            <label for="reviewer">
+              Edit your name:
+            </label>
+          </dt>
+          <dd>
+            <input type="text"
+                   id="reviewer"
+                   name="reviewer"
+                   value
+            >
+          </dd>
+          <dt>
+            <label for="grade">
+              Edit your grade:
+            </label>
+          </dt>
+          <dd>
+            <input type="text"
+                   id="grade"
+                   name="grade"
+                   value="poop"
+            >
+          </dd>
+          <dt>
+            <label for="comments">
+              Edit your comments:
+            </label>
+          </dt>
+          <dd>
+            <textarea id="comments"
+                      name="comments"
+                      rows="6"
+                      cols="80"
+            >
+            </textarea>
+          </dd>
+        </dl>
+        <fieldset class="actions">
+          <input type="submit"
+                 value="Update Review"
+          >
+          <input type="reset"
+                 value="Clear Form"
+          >
+        </fieldset>
+      </form>
+    </main>
+  </body>
+</html>
+`;
+
+exports[`update a movie when: a user does NOT enter a valid reviewer then: we return 'Reviewer's name must be between 1 and 250 characters' 1`] = `
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>
+      The Ultimate Movie App
+    </title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"
+          href="/stylesheets/application.css"
+    >
+  </head>
+  <body>
+    <header>
+      <h1>
+        The Ultimate Movie App
+      </h1>
+    </header>
+    <main>
+      <ul>
+        <li class="flash error">
+          Reviewer's name must be between 1 and 250 characters
+        </li>
+      </ul>
+      <form action="/reviews/update/52"
+            method="post"
+      >
+        <dl>
+          <dt>
+            <label for="reviewer">
+              Edit your name:
+            </label>
+          </dt>
+          <dd>
+            <input type="text"
+                   id="reviewer"
+                   name="reviewer"
+                   value
+            >
+          </dd>
+          <dt>
+            <label for="grade">
+              Edit your grade:
+            </label>
+          </dt>
+          <dd>
+            <input type="text"
+                   id="grade"
+                   name="grade"
+                   value="A"
+            >
+          </dd>
+          <dt>
+            <label for="comments">
+              Edit your comments:
+            </label>
+          </dt>
+          <dd>
+            <textarea id="comments"
+                      name="comments"
+                      rows="6"
+                      cols="80"
+            >
+            </textarea>
+          </dd>
+        </dl>
+        <fieldset class="actions">
+          <input type="submit"
+                 value="Update Review"
+          >
+          <input type="reset"
+                 value="Clear Form"
+          >
+        </fieldset>
+      </form>
+    </main>
+  </body>
+</html>
+`;
+
 exports[`update a movie when: a user wants to view the form to edit a review then: we return the view of the form 1`] = `
 <!DOCTYPE html>
 <html lang="en-US">
@@ -24,18 +267,6 @@ exports[`update a movie when: a user wants to view the form to edit a review the
       >
         <dl>
           <dt>
-            <label for="title">
-              Edit the title of the movie:
-            </label>
-          </dt>
-          <dd>
-            <input type="text"
-                   id="title"
-                   name="title"
-                   value="Point Break"
-            >
-          </dd>
-          <dt>
             <label for="reviewer">
               Edit your name:
             </label>
@@ -44,8 +275,6 @@ exports[`update a movie when: a user wants to view the form to edit a review the
             <input type="text"
                    id="reviewer"
                    name="reviewer"
-                   placeholder="name"
-                   value="Phillips"
             >
           </dd>
           <dt>
@@ -57,9 +286,20 @@ exports[`update a movie when: a user wants to view the form to edit a review the
             <input type="text"
                    id="grade"
                    name="grade"
-                   placeholder
-                   value="A"
             >
+          </dd>
+          <dt>
+            <label for="comments">
+              Edit your comments:
+            </label>
+          </dt>
+          <dd>
+            <textarea id="comments"
+                      name="comments"
+                      rows="6"
+                      cols="80"
+            >
+            </textarea>
           </dd>
         </dl>
         <fieldset class="actions">
