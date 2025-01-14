@@ -14,7 +14,8 @@ class ReviewsHandler extends BaseHandler {
 
     this.reviewMovie = this.reviewMovie.bind(this);
     this.reviewMoviePost = this.reviewMoviePost.bind(this);
-    // this.updateReview = this.updateReview.bind(this);
+
+    this.updateReview = this.updateReview.bind(this);
     // this.updateReviewPost = this.updateReviewPost.bind(this);
 
     this.deleteReview = this.deleteReview.bind(this);
@@ -91,6 +92,24 @@ class ReviewsHandler extends BaseHandler {
 
     req.flash('success', 'Review added!');
     res.redirect('/reviews');
+  }
+
+  async updateReview(req, res) {
+    let review;
+
+    try {
+      review = await this.reviewsService.getReview(req.params.id);
+    } catch (err) {
+      if (err instanceof ErrReviewNotFound) {
+        //TODO: add a real view later (and then add a test)
+        return res.send(err.message);
+      } else {
+        console.log(`failed to find the review: ${err}`);
+        return res.send('Internal server error');
+      }
+    }
+
+    res.render('edit-review', { review, id: req.params.id });
   }
 
   async deleteReview(req, res) {

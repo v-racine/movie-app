@@ -107,6 +107,9 @@ const AppFactory = (args) => {
     '/reviews/reviewers/:reviewer',
     reviewsHandler.try(reviewsHandler.getAllReviewsByOneReviewer),
   );
+
+  app.get('/reviews/update/:id', reviewsHandler.try(reviewsHandler.updateReview));
+
   app.post('/reviews/delete/:id', reviewsHandler.try(reviewsHandler.deleteReview));
 
   return app;
