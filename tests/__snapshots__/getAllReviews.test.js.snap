@@ -39,7 +39,7 @@ exports[`get all reviews when: user wants to view ALL reviews by ONE reviewwer t
             </a>
           </td>
           <td>
-            | Reviewd by:
+            | Reviewed by:
             <a href="/reviews/reviewers/my chicken">
               my chicken
             </a>
@@ -93,7 +93,7 @@ exports[`get all reviews when: user wants to view ALL reviews of ONE movie then:
             </a>
           </td>
           <td>
-            | Reviewd by:
+            | Reviewed by:
             <a href="/reviews/reviewers/my chicken">
               my chicken
             </a>
@@ -147,7 +147,7 @@ exports[`get all reviews when: user wants to view ALL reviews then: we return al
             </a>
           </td>
           <td>
-            | Reviewd by:
+            | Reviewed by:
             <a href="/reviews/reviewers/my chicken">
               my chicken
             </a>

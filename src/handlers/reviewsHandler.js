@@ -16,7 +16,7 @@ class ReviewsHandler extends BaseHandler {
     this.reviewMoviePost = this.reviewMoviePost.bind(this);
 
     this.updateReview = this.updateReview.bind(this);
-    // this.updateReviewPost = this.updateReviewPost.bind(this);
+    this.updateReviewPost = this.updateReviewPost.bind(this);
 
     this.deleteReview = this.deleteReview.bind(this);
   }
@@ -110,6 +110,38 @@ class ReviewsHandler extends BaseHandler {
     }
 
     res.render('edit-review', { review, id: req.params.id });
+  }
+
+  async updateReviewPost(req, res) {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      errors.array().forEach((error) => req.flash('error', error.msg));
+
+      return res.render('edit-review', {
+        flash: req.flash(),
+
+        id: req.params.id,
+        reviewer: req.body.reviewer,
+        grade: req.body.grade,
+        comments: req.body.comments,
+      });
+    }
+
+    try {
+      await this.reviewsService.updateReview(req.params.id, req.body);
+    } catch (err) {
+      if (err instanceof ErrReviewNotFound) {
+        //TODO: add a real view later (and then add a test)
+        return res.send(err.message);
+      } else {
+        console.log(`failed to find the review: ${err}`);
+        return res.send('Internal server error');
+      }
+    }
+
+    req.flash('success', 'Review updated!');
+    res.redirect('/reviews');
   }
 
   async deleteReview(req, res) {
