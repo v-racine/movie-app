@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`add a movie when: a user does NOT enter a valid run time then: we return 'Run time must be in minutes' 1`] = `
+exports[`add a review when: a user does NOT enter a valid grade then: we return 'Invalid grade' 1`] = `
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
@@ -21,10 +21,10 @@ exports[`add a movie when: a user does NOT enter a valid run time then: we retur
     <main>
       <ul>
         <li class="flash error">
-          Run time must be in minutes
+          Invalid grade
         </li>
       </ul>
-      <form action="/movies/create"
+      <form action="/reviews/create"
             method="post"
       >
         <dl>
@@ -37,40 +37,54 @@ exports[`add a movie when: a user does NOT enter a valid run time then: we retur
             <input type="text"
                    id="title"
                    name="title"
-                   placeholder="Movie Title"
+                   placeholder="title"
                    value="Point Break"
             >
           </dd>
           <dt>
-            <label for="year">
-              Enter the movie's year of release:
+            <label for="reviewer">
+              Enter your name:
             </label>
           </dt>
           <dd>
             <input type="text"
-                   id="year"
-                   name="year"
-                   placeholder="Release Year"
-                   value="1991"
+                   id="reviewer"
+                   name="reviewer"
+                   placeholder="name"
+                   value="Phillips"
             >
           </dd>
           <dt>
-            <label for="runTime">
-              Enter the movie's run time:
+            <label for="grade">
+              Enter your grade:
             </label>
           </dt>
           <dd>
             <input type="text"
-                   id="runTime"
-                   name="runTime"
-                   placeholder="Run time"
-                   value="null"
+                   id="grade"
+                   name="grade"
+                   placeholder="e.g. A+, A, A-, B+, etc."
+                   value="poop"
             >
+          </dd>
+          <dt>
+            <label for="comments">
+              What did you think of the movie?
+            </label>
+          </dt>
+          <dd>
+            <textarea id="comments"
+                      name="comments"
+                      rows="6"
+                      cols="80"
+                      placeholder="type your comments here"
+            >
+            </textarea>
           </dd>
         </dl>
         <fieldset class="actions">
           <input type="submit"
-                 value="Add Movie"
+                 value="Submit Review"
           >
           <input type="reset"
                  value="Clear Form"
@@ -82,7 +96,103 @@ exports[`add a movie when: a user does NOT enter a valid run time then: we retur
 </html>
 `;
 
-exports[`add a movie when: a user does NOT enter a valid title NOR a valid year then: we return both 'Title must be between 1 and 250 characters' AND 'Year must be a 4-digit number' 1`] = `
+exports[`add a review when: a user does NOT enter a valid reviewer then: we return 'Reviewer's name must be between 1 and 250 characters' 1`] = `
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>
+      The Ultimate Movie App
+    </title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"
+          href="/stylesheets/application.css"
+    >
+  </head>
+  <body>
+    <header>
+      <h1>
+        The Ultimate Movie App
+      </h1>
+    </header>
+    <main>
+      <ul>
+        <li class="flash error">
+          Reviewer's name must be between 1 and 250 characters
+        </li>
+      </ul>
+      <form action="/reviews/create"
+            method="post"
+      >
+        <dl>
+          <dt>
+            <label for="title">
+              Enter the title of a new movie:
+            </label>
+          </dt>
+          <dd>
+            <input type="text"
+                   id="title"
+                   name="title"
+                   placeholder="title"
+                   value="Point Break"
+            >
+          </dd>
+          <dt>
+            <label for="reviewer">
+              Enter your name:
+            </label>
+          </dt>
+          <dd>
+            <input type="text"
+                   id="reviewer"
+                   name="reviewer"
+                   placeholder="name"
+                   value
+            >
+          </dd>
+          <dt>
+            <label for="grade">
+              Enter your grade:
+            </label>
+          </dt>
+          <dd>
+            <input type="text"
+                   id="grade"
+                   name="grade"
+                   placeholder="e.g. A+, A, A-, B+, etc."
+                   value="A"
+            >
+          </dd>
+          <dt>
+            <label for="comments">
+              What did you think of the movie?
+            </label>
+          </dt>
+          <dd>
+            <textarea id="comments"
+                      name="comments"
+                      rows="6"
+                      cols="80"
+                      placeholder="type your comments here"
+            >
+            </textarea>
+          </dd>
+        </dl>
+        <fieldset class="actions">
+          <input type="submit"
+                 value="Submit Review"
+          >
+          <input type="reset"
+                 value="Clear Form"
+          >
+        </fieldset>
+      </form>
+    </main>
+  </body>
+</html>
+`;
+
+exports[`add a review when: a user does NOT enter a valid title NOR a valid grade then: we return 'Movie title must be between 1 and 250 characters' AND 'Invalid grade' 1`] = `
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
@@ -106,10 +216,10 @@ exports[`add a movie when: a user does NOT enter a valid title NOR a valid year 
           Movie title must be between 1 and 250 characters
         </li>
         <li class="flash error">
-          Year must be a 4-digit number
+          Invalid grade
         </li>
       </ul>
-      <form action="/movies/create"
+      <form action="/reviews/create"
             method="post"
       >
         <dl>
@@ -122,40 +232,54 @@ exports[`add a movie when: a user does NOT enter a valid title NOR a valid year 
             <input type="text"
                    id="title"
                    name="title"
-                   placeholder="Movie Title"
+                   placeholder="title"
                    value
             >
           </dd>
           <dt>
-            <label for="year">
-              Enter the movie's year of release:
+            <label for="reviewer">
+              Enter your name:
             </label>
           </dt>
           <dd>
             <input type="text"
-                   id="year"
-                   name="year"
-                   placeholder="Release Year"
-                   value="null"
+                   id="reviewer"
+                   name="reviewer"
+                   placeholder="name"
+                   value="Phillips"
             >
           </dd>
           <dt>
-            <label for="runTime">
-              Enter the movie's run time:
+            <label for="grade">
+              Enter your grade:
             </label>
           </dt>
           <dd>
             <input type="text"
-                   id="runTime"
-                   name="runTime"
-                   placeholder="Run time"
-                   value="122"
+                   id="grade"
+                   name="grade"
+                   placeholder="e.g. A+, A, A-, B+, etc."
+                   value
             >
+          </dd>
+          <dt>
+            <label for="comments">
+              What did you think of the movie?
+            </label>
+          </dt>
+          <dd>
+            <textarea id="comments"
+                      name="comments"
+                      rows="6"
+                      cols="80"
+                      placeholder="type your comments here"
+            >
+            </textarea>
           </dd>
         </dl>
         <fieldset class="actions">
           <input type="submit"
-                 value="Add Movie"
+                 value="Submit Review"
           >
           <input type="reset"
                  value="Clear Form"
@@ -167,7 +291,7 @@ exports[`add a movie when: a user does NOT enter a valid title NOR a valid year 
 </html>
 `;
 
-exports[`add a movie when: a user does NOT enter a valid title then: we return 'Title must be between 1 and 250 characters' 1`] = `
+exports[`add a review when: a user does NOT enter a valid title then: we return 'Movie title must be between 1 and 250 characters' 1`] = `
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
@@ -191,7 +315,7 @@ exports[`add a movie when: a user does NOT enter a valid title then: we return '
           Movie title must be between 1 and 250 characters
         </li>
       </ul>
-      <form action="/movies/create"
+      <form action="/reviews/create"
             method="post"
       >
         <dl>
@@ -204,40 +328,54 @@ exports[`add a movie when: a user does NOT enter a valid title then: we return '
             <input type="text"
                    id="title"
                    name="title"
-                   placeholder="Movie Title"
+                   placeholder="title"
                    value
             >
           </dd>
           <dt>
-            <label for="year">
-              Enter the movie's year of release:
+            <label for="reviewer">
+              Enter your name:
             </label>
           </dt>
           <dd>
             <input type="text"
-                   id="year"
-                   name="year"
-                   placeholder="Release Year"
-                   value="1991"
+                   id="reviewer"
+                   name="reviewer"
+                   placeholder="name"
+                   value="Phillips"
             >
           </dd>
           <dt>
-            <label for="runTime">
-              Enter the movie's run time:
+            <label for="grade">
+              Enter your grade:
             </label>
           </dt>
           <dd>
             <input type="text"
-                   id="runTime"
-                   name="runTime"
-                   placeholder="Run time"
-                   value="122"
+                   id="grade"
+                   name="grade"
+                   placeholder="e.g. A+, A, A-, B+, etc."
+                   value="A"
             >
+          </dd>
+          <dt>
+            <label for="comments">
+              What did you think of the movie?
+            </label>
+          </dt>
+          <dd>
+            <textarea id="comments"
+                      name="comments"
+                      rows="6"
+                      cols="80"
+                      placeholder="type your comments here"
+            >
+            </textarea>
           </dd>
         </dl>
         <fieldset class="actions">
           <input type="submit"
-                 value="Add Movie"
+                 value="Submit Review"
           >
           <input type="reset"
                  value="Clear Form"
@@ -249,7 +387,7 @@ exports[`add a movie when: a user does NOT enter a valid title then: we return '
 </html>
 `;
 
-exports[`add a movie when: a user does NOT enter a valid year then: we return 'Year must be a 4-digit number' 1`] = `
+exports[`add a review when: a user wants to view the form to add a review  then: we return the view of the form 1`] = `
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
@@ -268,12 +406,7 @@ exports[`add a movie when: a user does NOT enter a valid year then: we return 'Y
       </h1>
     </header>
     <main>
-      <ul>
-        <li class="flash error">
-          Year must be a 4-digit number
-        </li>
-      </ul>
-      <form action="/movies/create"
+      <form action="/reviews/create"
             method="post"
       >
         <dl>
@@ -286,114 +419,51 @@ exports[`add a movie when: a user does NOT enter a valid year then: we return 'Y
             <input type="text"
                    id="title"
                    name="title"
-                   placeholder="Movie Title"
-                   value="Point Break"
+                   placeholder="title"
             >
           </dd>
           <dt>
-            <label for="year">
-              Enter the movie's year of release:
+            <label for="reviewer">
+              Enter your name:
             </label>
           </dt>
           <dd>
             <input type="text"
-                   id="year"
-                   name="year"
-                   placeholder="Release Year"
-                   value="21"
+                   id="reviewer"
+                   name="reviewer"
+                   placeholder="name"
             >
           </dd>
           <dt>
-            <label for="runTime">
-              Enter the movie's run time:
+            <label for="grade">
+              Enter your grade:
             </label>
           </dt>
           <dd>
             <input type="text"
-                   id="runTime"
-                   name="runTime"
-                   placeholder="Run time"
-                   value="122"
+                   id="grade"
+                   name="grade"
+                   placeholder="e.g. A+, A, A-, B+, etc."
             >
+          </dd>
+          <dt>
+            <label for="comments">
+              What did you think of the movie?
+            </label>
+          </dt>
+          <dd>
+            <textarea id="comments"
+                      name="comments"
+                      rows="6"
+                      cols="80"
+                      placeholder="type your comments here"
+            >
+            </textarea>
           </dd>
         </dl>
         <fieldset class="actions">
           <input type="submit"
-                 value="Add Movie"
-          >
-          <input type="reset"
-                 value="Clear Form"
-          >
-        </fieldset>
-      </form>
-    </main>
-  </body>
-</html>
-`;
-
-exports[`add a movie when: a user wants to view the form to add a movie then: we return the view of the form 1`] = `
-<!DOCTYPE html>
-<html lang="en-US">
-  <head>
-    <title>
-      The Ultimate Movie App
-    </title>
-    <meta charset="UTF-8">
-    <link rel="stylesheet"
-          href="/stylesheets/application.css"
-    >
-  </head>
-  <body>
-    <header>
-      <h1>
-        The Ultimate Movie App
-      </h1>
-    </header>
-    <main>
-      <form action="/movies/create"
-            method="post"
-      >
-        <dl>
-          <dt>
-            <label for="title">
-              Enter the title of a new movie:
-            </label>
-          </dt>
-          <dd>
-            <input type="text"
-                   id="title"
-                   name="title"
-                   placeholder="Movie Title"
-            >
-          </dd>
-          <dt>
-            <label for="year">
-              Enter the movie's year of release:
-            </label>
-          </dt>
-          <dd>
-            <input type="text"
-                   id="year"
-                   name="year"
-                   placeholder="Release Year"
-            >
-          </dd>
-          <dt>
-            <label for="runTime">
-              Enter the movie's run time:
-            </label>
-          </dt>
-          <dd>
-            <input type="text"
-                   id="runTime"
-                   name="runTime"
-                   placeholder="Run time"
-            >
-          </dd>
-        </dl>
-        <fieldset class="actions">
-          <input type="submit"
-                 value="Add Movie"
+                 value="Submit Review"
           >
           <input type="reset"
                  value="Clear Form"

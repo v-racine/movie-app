@@ -103,7 +103,7 @@ exports[`update a movie when: a user does NOT enter a valid title NOR a valid ye
     <main>
       <ul>
         <li class="flash error">
-          Title must be between 1 and 250 characters
+          Movie title must be between 1 and 250 characters
         </li>
         <li class="flash error">
           Year must be a 4-digit number
@@ -188,7 +188,7 @@ exports[`update a movie when: a user does NOT enter a valid title then: we retur
     <main>
       <ul>
         <li class="flash error">
-          Title must be between 1 and 250 characters
+          Movie title must be between 1 and 250 characters
         </li>
       </ul>
       <form action="/movies/create"

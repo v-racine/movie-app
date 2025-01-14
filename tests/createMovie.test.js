@@ -12,7 +12,7 @@ describe('add a movie', () => {
     pgClient: mockPgClient,
   });
 
-  describe('when: a use wants to view the form to add a movie', () => {
+  describe('when: a user wants to view the form to add a movie', () => {
     let rsp;
 
     beforeEach(async () => {

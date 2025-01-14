@@ -3,7 +3,14 @@ const session = require('express-session');
 const flash = require('express-flash');
 const morgan = require('morgan');
 
-const { parseTitle, parseYear, parseRuntime } = require('./middleware/parsers');
+const {
+  parseTitle,
+  parseYear,
+  parseRuntime,
+  parseReviewer,
+  parseGrade,
+  parseComments,
+} = require('./middleware/parsers');
 
 const { HomeHandler } = require('./handlers/homeHandler');
 
@@ -87,6 +94,13 @@ const AppFactory = (args) => {
   app.post('/movies/delete/:id', moviesHandler.try(moviesHandler.deleteMovie));
 
   app.get('/reviews', reviewsHandler.try(reviewsHandler.getAllReviews));
+  app.get('/reviews/create', reviewsHandler.try(reviewsHandler.reviewMovie));
+  app.post(
+    '/reviews/create',
+    [parseTitle, parseReviewer, parseGrade, parseComments],
+    reviewsHandler.try(reviewsHandler.reviewMoviePost),
+  );
+
   app.get('/reviews/:id', reviewsHandler.try(reviewsHandler.getReview));
   app.get('/movies/:id/reviews', reviewsHandler.try(reviewsHandler.getAllReviewsOfOneMovie));
   app.get(
