@@ -23,7 +23,6 @@ class ReviewsHandler extends BaseHandler {
 
   async getAllReviews(req, res) {
     const reviews = await this.reviewsService.getAllReviews();
-    //TODO: improve the `reviews-lists` view
     res.render('reviews-list', { reviews });
   }
 
@@ -34,8 +33,7 @@ class ReviewsHandler extends BaseHandler {
       review = await this.reviewsService.getReview(req.params.id);
     } catch (err) {
       if (err instanceof ErrReviewNotFound) {
-        //TODO: add a real view later (and then add a test)
-        return res.send(err.message);
+        return res.render('new-review', { err });
       } else {
         console.log(`failed to find the review: ${err}`);
         return res.send('Internal server error');
@@ -101,8 +99,7 @@ class ReviewsHandler extends BaseHandler {
       review = await this.reviewsService.getReview(req.params.id);
     } catch (err) {
       if (err instanceof ErrReviewNotFound) {
-        //TODO: add a real view later (and then add a test)
-        return res.send(err.message);
+        return res.render('new-review', { err });
       } else {
         console.log(`failed to find the review: ${err}`);
         return res.send('Internal server error');
@@ -132,8 +129,7 @@ class ReviewsHandler extends BaseHandler {
       await this.reviewsService.updateReview(req.params.id, req.body);
     } catch (err) {
       if (err instanceof ErrReviewNotFound) {
-        //TODO: add a real view later (and then add a test)
-        return res.send(err.message);
+        return res.render('new-review', { err });
       } else {
         console.log(`failed to find the review: ${err}`);
         return res.send('Internal server error');

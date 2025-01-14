@@ -10,7 +10,6 @@ const {
   parseReviewer,
   parseGrade,
   parseComments,
-  parseMovieTitle,
 } = require('./middleware/parsers');
 
 const { HomeHandler } = require('./handlers/homeHandler');
