@@ -1,0 +1,32 @@
+extends layout 
+
+block main 
+  form(action=`/reviews/update/${id}` method="post")
+    dl
+      dt
+        label(for="title") Edit the title of the movie:
+      dd
+        input(type="text"
+              id="title"
+              name="title"
+              value=review.movie_title)
+      dt
+        label(for="reviewer") Edit your name:
+      dd
+        input(type="text"
+              id="reviewer"
+              name="reviewer"
+              placeholder="name"
+              value=review.reviewer)
+      dt
+        label(for="grade") Edit your grade:
+      dd
+        input(type="text"
+              id="grade"
+              name="grade"
+              placeholder=""
+              value=review.grade)
+
+    fieldset.actions
+      input(type="submit" value="Update Review")
+      input(type='reset', value='Clear Form')
