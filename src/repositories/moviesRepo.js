@@ -4,10 +4,21 @@ class MoviesRepo {
     this.client = args.client;
   }
 
-  async getAll() {
-    const ALL_MOVIES = `SELECT * FROM ${this.table} ORDER BY id`;
+  async getAll(queryStrings) {
+    let queryParams = Object.keys(queryStrings);
+    let result;
 
-    const result = await this.client.dbQuery(ALL_MOVIES);
+    if (queryParams.length > 0) {
+      const ALL_MOVIES = `SELECT * FROM ${this.table} WHERE movie_title = $1 OR movie_year = $2 OR run_time = $3 ORDER BY movie_year, title`;
+
+      const { title, year, runTime } = queryStrings;
+
+      result = await this.client.dbQuery(ALL_MOVIES, title, year, runTime);
+    } else {
+      const ALL_MOVIES = `SELECT * FROM ${this.table} ORDER BY movie_year, title`;
+
+      result = await this.client.dbQuery(ALL_MOVIES);
+    }
 
     return result.rows;
   }
