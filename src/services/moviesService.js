@@ -15,8 +15,8 @@ class MovieService {
     this.moviesRepo = args.moviesRepo;
   }
 
-  async getAllMovies() {
-    const arrOfMovieObjs = await this.moviesRepo.getAll();
+  async getAllMovies(queryStrings) {
+    const arrOfMovieObjs = await this.moviesRepo.getAll(queryStrings);
 
     const idAndTitles = arrOfMovieObjs.map((movieObject) => {
       return {
