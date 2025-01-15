@@ -9,7 +9,8 @@ block main
         input(type="text"
               id="title"
               name="title"
-              value=movie.movie_title)
+              placeholder="Title"
+              value=title)
       dt
         label(for="year") Edit the movie's year of release:
       dd
@@ -17,7 +18,7 @@ block main
               id="year"
               name="year"
               placeholder="Release Year"
-              value=movie.movie_year)
+              value=year)
       dt
         label(for="runTime") Edit the movie's run time:
       dd
@@ -25,8 +26,8 @@ block main
               id="runTime"
               name="runTime"
               placeholder="Run time"
-              value=movie.run_time)
+              value=runTime)
 
     fieldset.actions
       input(type="submit" value="Update Movie")
-      input(type='reset', value='Clear Form')
+      input(type="reset", value="Clear Form")

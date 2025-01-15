@@ -37,6 +37,7 @@ exports[`update a movie when: a user does NOT enter a valid grade then: we retur
             <input type="text"
                    id="reviewer"
                    name="reviewer"
+                   placeholder="name"
                    value="Phillips"
             >
           </dd>
@@ -46,11 +47,47 @@ exports[`update a movie when: a user does NOT enter a valid grade then: we retur
             </label>
           </dt>
           <dd>
-            <input type="text"
-                   id="grade"
-                   name="grade"
-                   value="poop"
-            >
+            <select name="grade">
+              <option value
+                      disabled
+                      selected
+              >
+                Choose one
+              </option>
+              <option value="A+">
+                A+
+              </option>
+              <option value="A">
+                A
+              </option>
+              <option value="A-">
+                A-
+              </option>
+              <option value="B+">
+                B+
+              </option>
+              <option value="B">
+                B
+              </option>
+              <option value="B-">
+                B-
+              </option>
+              <option value="C+">
+                C+
+              </option>
+              <option value="C">
+                C
+              </option>
+              <option value="C-">
+                C-
+              </option>
+              <option value="D">
+                D
+              </option>
+              <option value="F">
+                F
+              </option>
+            </select>
           </dd>
           <dt>
             <label for="comments">
@@ -62,6 +99,7 @@ exports[`update a movie when: a user does NOT enter a valid grade then: we retur
                       name="comments"
                       rows="6"
                       cols="80"
+                      placeholder="type your comments here"
             >
             </textarea>
           </dd>
@@ -120,6 +158,7 @@ exports[`update a movie when: a user does NOT enter a valid reviewer NOR a valid
             <input type="text"
                    id="reviewer"
                    name="reviewer"
+                   placeholder="name"
                    value
             >
           </dd>
@@ -129,11 +168,47 @@ exports[`update a movie when: a user does NOT enter a valid reviewer NOR a valid
             </label>
           </dt>
           <dd>
-            <input type="text"
-                   id="grade"
-                   name="grade"
-                   value="poop"
-            >
+            <select name="grade">
+              <option value
+                      disabled
+                      selected
+              >
+                Choose one
+              </option>
+              <option value="A+">
+                A+
+              </option>
+              <option value="A">
+                A
+              </option>
+              <option value="A-">
+                A-
+              </option>
+              <option value="B+">
+                B+
+              </option>
+              <option value="B">
+                B
+              </option>
+              <option value="B-">
+                B-
+              </option>
+              <option value="C+">
+                C+
+              </option>
+              <option value="C">
+                C
+              </option>
+              <option value="C-">
+                C-
+              </option>
+              <option value="D">
+                D
+              </option>
+              <option value="F">
+                F
+              </option>
+            </select>
           </dd>
           <dt>
             <label for="comments">
@@ -145,6 +220,7 @@ exports[`update a movie when: a user does NOT enter a valid reviewer NOR a valid
                       name="comments"
                       rows="6"
                       cols="80"
+                      placeholder="type your comments here"
             >
             </textarea>
           </dd>
@@ -200,6 +276,7 @@ exports[`update a movie when: a user does NOT enter a valid reviewer then: we re
             <input type="text"
                    id="reviewer"
                    name="reviewer"
+                   placeholder="name"
                    value
             >
           </dd>
@@ -209,11 +286,47 @@ exports[`update a movie when: a user does NOT enter a valid reviewer then: we re
             </label>
           </dt>
           <dd>
-            <input type="text"
-                   id="grade"
-                   name="grade"
-                   value="A"
-            >
+            <select name="grade">
+              <option value
+                      disabled
+                      selected
+              >
+                Choose one
+              </option>
+              <option value="A+">
+                A+
+              </option>
+              <option value="A">
+                A
+              </option>
+              <option value="A-">
+                A-
+              </option>
+              <option value="B+">
+                B+
+              </option>
+              <option value="B">
+                B
+              </option>
+              <option value="B-">
+                B-
+              </option>
+              <option value="C+">
+                C+
+              </option>
+              <option value="C">
+                C
+              </option>
+              <option value="C-">
+                C-
+              </option>
+              <option value="D">
+                D
+              </option>
+              <option value="F">
+                F
+              </option>
+            </select>
           </dd>
           <dt>
             <label for="comments">
@@ -225,6 +338,7 @@ exports[`update a movie when: a user does NOT enter a valid reviewer then: we re
                       name="comments"
                       rows="6"
                       cols="80"
+                      placeholder="type your comments here"
             >
             </textarea>
           </dd>
@@ -275,6 +389,7 @@ exports[`update a movie when: a user wants to view the form to edit a review the
             <input type="text"
                    id="reviewer"
                    name="reviewer"
+                   placeholder="name"
             >
           </dd>
           <dt>
@@ -283,10 +398,47 @@ exports[`update a movie when: a user wants to view the form to edit a review the
             </label>
           </dt>
           <dd>
-            <input type="text"
-                   id="grade"
-                   name="grade"
-            >
+            <select name="grade">
+              <option value
+                      disabled
+                      selected
+              >
+                Choose one
+              </option>
+              <option value="A+">
+                A+
+              </option>
+              <option value="A">
+                A
+              </option>
+              <option value="A-">
+                A-
+              </option>
+              <option value="B+">
+                B+
+              </option>
+              <option value="B">
+                B
+              </option>
+              <option value="B-">
+                B-
+              </option>
+              <option value="C+">
+                C+
+              </option>
+              <option value="C">
+                C
+              </option>
+              <option value="C-">
+                C-
+              </option>
+              <option value="D">
+                D
+              </option>
+              <option value="F">
+                F
+              </option>
+            </select>
           </dd>
           <dt>
             <label for="comments">
@@ -298,6 +450,7 @@ exports[`update a movie when: a user wants to view the form to edit a review the
                       name="comments"
                       rows="6"
                       cols="80"
+                      placeholder="type your comments here"
             >
             </textarea>
           </dd>
