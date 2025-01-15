@@ -9,13 +9,13 @@ class MoviesRepo {
     let result;
 
     if (queryParams.length > 0) {
-      const ALL_MOVIES = `SELECT * FROM ${this.table} WHERE movie_title = $1 OR movie_year = $2 OR run_time = $3 ORDER BY movie_year`;
+      const ALL_MOVIES = `SELECT * FROM ${this.table} WHERE movie_title = $1 OR movie_year = $2 OR run_time = $3 ORDER BY movie_year, title`;
 
       const { title, year, runTime } = queryStrings;
 
       result = await this.client.dbQuery(ALL_MOVIES, title, year, runTime);
     } else {
-      const ALL_MOVIES = `SELECT * FROM ${this.table} ORDER BY movie_year`;
+      const ALL_MOVIES = `SELECT * FROM ${this.table} ORDER BY movie_year, title`;
 
       result = await this.client.dbQuery(ALL_MOVIES);
     }

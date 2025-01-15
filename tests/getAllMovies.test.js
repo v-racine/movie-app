@@ -47,7 +47,9 @@ describe('get all movies', () => {
     });
 
     test('then: we return all the movie titles', async () => {
-      expect(mockPgClient.dbQuery).toHaveBeenCalledWith('SELECT * FROM movies ORDER BY movie_year');
+      expect(mockPgClient.dbQuery).toHaveBeenCalledWith(
+        'SELECT * FROM movies ORDER BY movie_year, title',
+      );
 
       const text = rsp.text;
       expect(text).toMatchSnapshot();
@@ -84,7 +86,7 @@ describe('get all movies', () => {
 
     test('then: we return all the movie titles with the specified release year', () => {
       expect(mockPgClient.dbQuery).toHaveBeenCalledWith(
-        'SELECT * FROM movies WHERE movie_title = $1 OR movie_year = $2 OR run_time = $3 ORDER BY movie_year',
+        'SELECT * FROM movies WHERE movie_title = $1 OR movie_year = $2 OR run_time = $3 ORDER BY movie_year, title',
         undefined,
         '2007',
         undefined,
