@@ -25,11 +25,24 @@ block main
       dt
         label(for="grade") Enter your grade:
       dd
-        input(type="text"
-              id="grade"
-              name="grade"
-              placeholder="e.g. A+, A, A-, B+, etc."
-              value=grade)
+        select(name='grade')
+          option(value='', disabled='', selected='') Choose one
+          option(value='A+') A+
+          option(value='A') A
+          option(value='A-') A-
+          option(value='B+') B+
+          option(value='B') B
+          option(value='B-') B-
+          option(value='C+') C+
+          option(value='C') C
+          option(value='C-') C-
+          option(value='D') D
+          option(value='F') F
+        //- input(type="text"
+        //-       id="grade"
+        //-       name="grade"
+        //-       placeholder="e.g. A+, A, A-, B+, etc."
+        //-       value=grade)
       dt
         label(for="comments") What did you think of the movie?
       dd
@@ -38,7 +51,7 @@ block main
           
     fieldset.actions
       input(type="submit" value="Submit Review")
-      input(type='reset', value='Clear Form')
+      input(type="reset", value="Clear Form")
 
 
       

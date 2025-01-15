@@ -60,12 +60,47 @@ exports[`add a review when: a user does NOT enter a valid grade then: we return 
             </label>
           </dt>
           <dd>
-            <input type="text"
-                   id="grade"
-                   name="grade"
-                   placeholder="e.g. A+, A, A-, B+, etc."
-                   value="poop"
-            >
+            <select name="grade">
+              <option value
+                      disabled
+                      selected
+              >
+                Choose one
+              </option>
+              <option value="A+">
+                A+
+              </option>
+              <option value="A">
+                A
+              </option>
+              <option value="A-">
+                A-
+              </option>
+              <option value="B+">
+                B+
+              </option>
+              <option value="B">
+                B
+              </option>
+              <option value="B-">
+                B-
+              </option>
+              <option value="C+">
+                C+
+              </option>
+              <option value="C">
+                C
+              </option>
+              <option value="C-">
+                C-
+              </option>
+              <option value="D">
+                D
+              </option>
+              <option value="F">
+                F
+              </option>
+            </select>
           </dd>
           <dt>
             <label for="comments">
@@ -156,12 +191,47 @@ exports[`add a review when: a user does NOT enter a valid reviewer then: we retu
             </label>
           </dt>
           <dd>
-            <input type="text"
-                   id="grade"
-                   name="grade"
-                   placeholder="e.g. A+, A, A-, B+, etc."
-                   value="A"
-            >
+            <select name="grade">
+              <option value
+                      disabled
+                      selected
+              >
+                Choose one
+              </option>
+              <option value="A+">
+                A+
+              </option>
+              <option value="A">
+                A
+              </option>
+              <option value="A-">
+                A-
+              </option>
+              <option value="B+">
+                B+
+              </option>
+              <option value="B">
+                B
+              </option>
+              <option value="B-">
+                B-
+              </option>
+              <option value="C+">
+                C+
+              </option>
+              <option value="C">
+                C
+              </option>
+              <option value="C-">
+                C-
+              </option>
+              <option value="D">
+                D
+              </option>
+              <option value="F">
+                F
+              </option>
+            </select>
           </dd>
           <dt>
             <label for="comments">
@@ -255,12 +325,47 @@ exports[`add a review when: a user does NOT enter a valid title NOR a valid grad
             </label>
           </dt>
           <dd>
-            <input type="text"
-                   id="grade"
-                   name="grade"
-                   placeholder="e.g. A+, A, A-, B+, etc."
-                   value
-            >
+            <select name="grade">
+              <option value
+                      disabled
+                      selected
+              >
+                Choose one
+              </option>
+              <option value="A+">
+                A+
+              </option>
+              <option value="A">
+                A
+              </option>
+              <option value="A-">
+                A-
+              </option>
+              <option value="B+">
+                B+
+              </option>
+              <option value="B">
+                B
+              </option>
+              <option value="B-">
+                B-
+              </option>
+              <option value="C+">
+                C+
+              </option>
+              <option value="C">
+                C
+              </option>
+              <option value="C-">
+                C-
+              </option>
+              <option value="D">
+                D
+              </option>
+              <option value="F">
+                F
+              </option>
+            </select>
           </dd>
           <dt>
             <label for="comments">
@@ -351,12 +456,47 @@ exports[`add a review when: a user does NOT enter a valid title then: we return 
             </label>
           </dt>
           <dd>
-            <input type="text"
-                   id="grade"
-                   name="grade"
-                   placeholder="e.g. A+, A, A-, B+, etc."
-                   value="A"
-            >
+            <select name="grade">
+              <option value
+                      disabled
+                      selected
+              >
+                Choose one
+              </option>
+              <option value="A+">
+                A+
+              </option>
+              <option value="A">
+                A
+              </option>
+              <option value="A-">
+                A-
+              </option>
+              <option value="B+">
+                B+
+              </option>
+              <option value="B">
+                B
+              </option>
+              <option value="B-">
+                B-
+              </option>
+              <option value="C+">
+                C+
+              </option>
+              <option value="C">
+                C
+              </option>
+              <option value="C-">
+                C-
+              </option>
+              <option value="D">
+                D
+              </option>
+              <option value="F">
+                F
+              </option>
+            </select>
           </dd>
           <dt>
             <label for="comments">
@@ -440,11 +580,47 @@ exports[`add a review when: a user wants to view the form to add a review  then:
             </label>
           </dt>
           <dd>
-            <input type="text"
-                   id="grade"
-                   name="grade"
-                   placeholder="e.g. A+, A, A-, B+, etc."
-            >
+            <select name="grade">
+              <option value
+                      disabled
+                      selected
+              >
+                Choose one
+              </option>
+              <option value="A+">
+                A+
+              </option>
+              <option value="A">
+                A
+              </option>
+              <option value="A-">
+                A-
+              </option>
+              <option value="B+">
+                B+
+              </option>
+              <option value="B">
+                B
+              </option>
+              <option value="B-">
+                B-
+              </option>
+              <option value="C+">
+                C+
+              </option>
+              <option value="C">
+                C
+              </option>
+              <option value="C-">
+                C-
+              </option>
+              <option value="D">
+                D
+              </option>
+              <option value="F">
+                F
+              </option>
+            </select>
           </dd>
           <dt>
             <label for="comments">

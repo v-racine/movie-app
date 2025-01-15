@@ -56,11 +56,47 @@ exports[`get a review when: a user requests a review that doesn't exist then: we
             </label>
           </dt>
           <dd>
-            <input type="text"
-                   id="grade"
-                   name="grade"
-                   placeholder="e.g. A+, A, A-, B+, etc."
-            >
+            <select name="grade">
+              <option value
+                      disabled
+                      selected
+              >
+                Choose one
+              </option>
+              <option value="A+">
+                A+
+              </option>
+              <option value="A">
+                A
+              </option>
+              <option value="A-">
+                A-
+              </option>
+              <option value="B+">
+                B+
+              </option>
+              <option value="B">
+                B
+              </option>
+              <option value="B-">
+                B-
+              </option>
+              <option value="C+">
+                C+
+              </option>
+              <option value="C">
+                C
+              </option>
+              <option value="C-">
+                C-
+              </option>
+              <option value="D">
+                D
+              </option>
+              <option value="F">
+                F
+              </option>
+            </select>
           </dd>
           <dt>
             <label for="comments">

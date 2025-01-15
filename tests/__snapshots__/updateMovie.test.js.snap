@@ -363,7 +363,7 @@ exports[`update a movie when: a user wants to view the form to edit a movie then
             <input type="text"
                    id="title"
                    name="title"
-                   value="Point Break"
+                   placeholder="Title"
             >
           </dd>
           <dt>
@@ -376,7 +376,6 @@ exports[`update a movie when: a user wants to view the form to edit a movie then
                    id="year"
                    name="year"
                    placeholder="Release Year"
-                   value="1991"
             >
           </dd>
           <dt>
@@ -389,7 +388,6 @@ exports[`update a movie when: a user wants to view the form to edit a movie then
                    id="runTime"
                    name="runTime"
                    placeholder="Run time"
-                   value="122"
             >
           </dd>
         </dl>
