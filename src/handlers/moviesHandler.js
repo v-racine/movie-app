@@ -17,8 +17,17 @@ class MoviesHandler extends BaseHandler {
   }
 
   async getAllMovies(req, res) {
-    const queryStrings = req.query;
-    const movies = await this.moviesService.getAllMovies(queryStrings);
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      errors.array().forEach((error) => req.flash('error', error.msg));
+
+      return res.render('home', {
+        flash: req.flash(),
+      });
+    }
+
+    const movies = await this.moviesService.getAllMovies(req.query);
     res.render('movie-list', { movies });
   }
 
