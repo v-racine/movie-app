@@ -11,6 +11,11 @@ const {
   parseGrade,
   parseComments,
 } = require('./middleware/parsers');
+const {
+  parseTitleQuery,
+  parseYearQuery,
+  parseRuntimeQuery,
+} = require('./middleware/queryStringParser');
 
 const { HomeHandler } = require('./handlers/homeHandler');
 
@@ -77,7 +82,12 @@ const AppFactory = (args) => {
   // register handlers to routes
   app.get('/', homeHandler.try(homeHandler.getHomePage));
 
-  app.get('/movies', moviesHandler.try(moviesHandler.getAllMovies));
+  app.get(
+    '/movies',
+    [parseTitleQuery, parseYearQuery, parseRuntimeQuery],
+    moviesHandler.try(moviesHandler.getAllMovies),
+  );
+
   app.get('/movies/create', moviesHandler.try(moviesHandler.createMovie));
   app.post(
     '/movies/create',

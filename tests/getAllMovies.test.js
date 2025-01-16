@@ -48,7 +48,7 @@ describe('get all movies', () => {
 
     test('then: we return all the movie titles', async () => {
       expect(mockPgClient.dbQuery).toHaveBeenCalledWith(
-        'SELECT * FROM movies ORDER BY movie_year, title',
+        'SELECT * FROM movies ORDER BY movie_year, movie_title',
       );
 
       const text = rsp.text;
@@ -60,7 +60,7 @@ describe('get all movies', () => {
     });
   });
 
-  describe('when: a user want to view all movies with a specific release year', () => {
+  describe('when: a user wants to view all movies with a specific release year', () => {
     let rsp;
 
     let movies = {
@@ -86,12 +86,45 @@ describe('get all movies', () => {
 
     test('then: we return all the movie titles with the specified release year', () => {
       expect(mockPgClient.dbQuery).toHaveBeenCalledWith(
-        'SELECT * FROM movies WHERE movie_title = $1 OR movie_year = $2 OR run_time = $3 ORDER BY movie_year, title',
+        'SELECT * FROM movies WHERE movie_title = $1 OR movie_year = $2 OR run_time = $3 ORDER BY movie_year, movie_title',
         undefined,
-        '2007',
+        2007,
         undefined,
       );
 
+      const text = rsp.text;
+      expect(text).toMatchSnapshot();
+
+      const status = rsp.status;
+      expect(status).toBe(200);
+    });
+  });
+
+  describe('when: a user wants to view all movies with a specific release year BUT the user does NOT enter a valid year in the query string', () => {
+    let rsp;
+
+    let movies = {
+      rows: [
+        { id: 1, title: 'There Will Be Blood', year: 2007, runTime: 158 },
+        { id: 2, title: 'No Country for Old Men', year: 2007, runTime: 122 },
+      ],
+    };
+
+    beforeEach(async () => {
+      mockPgClient.dbQuery = jest.fn().mockImplementation(() => {
+        return new Promise((resolve) => {
+          resolve(movies);
+        });
+      });
+
+      rsp = await request(app).get('/movies?year=poop').send();
+    });
+
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
+    test("then: we return a flash error message that says 'Year must be a 4-digit number'", async () => {
       const text = rsp.text;
       expect(text).toMatchSnapshot();
 
