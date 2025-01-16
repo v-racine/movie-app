@@ -86,10 +86,8 @@ describe('get all movies', () => {
 
     test('then: we return all the movie titles with the specified release year', () => {
       expect(mockPgClient.dbQuery).toHaveBeenCalledWith(
-        'SELECT * FROM movies WHERE movie_title = $1 OR movie_year = $2 OR run_time = $3 ORDER BY movie_year, movie_title',
-        undefined,
+        'SELECT * FROM movies WHERE movie_year = $1',
         2007,
-        undefined,
       );
 
       const text = rsp.text;
