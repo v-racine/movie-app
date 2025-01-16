@@ -27,6 +27,10 @@ const { ReviewsRepo } = require('./repositories/reviewsRepo');
 const { ReviewsService } = require('./services/reviewsService');
 const { ReviewsHandler } = require('./handlers/reviewsHandler');
 
+const { UsersRepo } = require('./repositories/usersRepo');
+const { UsersService } = require('./services/usersService');
+const { UsersHandler } = require('./handlers/usersHandler');
+
 const AppFactory = (args) => {
   //repos
   const moviesRepo = new MoviesRepo({
@@ -39,9 +43,15 @@ const AppFactory = (args) => {
     client: args.pgClient,
   });
 
+  const usersRepo = new UsersRepo({
+    table: 'users',
+    client: args.pgClient,
+  });
+
   //services (business logic layer)
   const moviesService = new MovieService({ moviesRepo });
   const reviewsService = new ReviewsService({ reviewsRepo });
+  const usersService = new UsersService({ usersRepo });
 
   //create server (and middlewares)
   const app = express();
@@ -78,6 +88,7 @@ const AppFactory = (args) => {
   const homeHandler = new HomeHandler();
   const moviesHandler = new MoviesHandler({ moviesService });
   const reviewsHandler = new ReviewsHandler({ reviewsService });
+  const usersHandler = new UsersHandler({ usersService });
 
   // register handlers to routes
   app.get('/', homeHandler.try(homeHandler.getHomePage));

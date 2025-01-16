@@ -1,5 +1,3 @@
-const { run } = require('jest');
-
 class MoviesRepo {
   constructor(args) {
     this.table = args.table;
