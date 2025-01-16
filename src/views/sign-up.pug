@@ -1,0 +1,48 @@
+extends layout 
+
+block main 
+  if err != undefined 
+    p #{err}
+
+  form(action="/signUp" method="post")
+    dl
+      dt
+        label(for="username") Enter a username:
+      dd
+        input(type="text"
+              id="username"
+              name="username"
+              placeholder="name"
+              value=username)
+      dt
+        label(for="email") Enter a valid email:
+      dd
+        input(type="email"
+              id="email"
+              name="email"
+              placeholder="username@example.com"
+              value=email)
+      dt
+        label(for="password") Create a password:
+      dd
+        input(type="password"
+              id="password"
+              name="password"
+              value=password)
+      dt
+        label(for="passwordConfirmation") Confirm your password:
+      dd
+        input(type="text"
+              id="passwordConfirmation"
+              name="passwordConfirmation"
+              value=passwordConfirmation)
+     
+          
+    fieldset.actions
+      input(type="submit" value="Submit")
+      input(type="reset", value="Clear Form")
+
+
+    p
+    a(href='/signin') Have an account? Sign In
+

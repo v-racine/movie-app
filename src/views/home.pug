@@ -3,7 +3,8 @@ extends layout
 block main 
   p Tell us about your favourite movies!
   
-    button Sign Up
+    form(action="/signup" method="get")
+      button Sign Up
 
     form(action="/movies" method="get")
       button See Movies
