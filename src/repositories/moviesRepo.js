@@ -6,7 +6,6 @@ class MoviesRepo {
 
   async getAll(queryStrings) {
     let queryParams = Object.keys(queryStrings);
-    console.log(queryParams);
     let result;
 
     if (queryParams.length > 0) {
