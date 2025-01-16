@@ -46,6 +46,54 @@ exports[`get all movies when: a user wants to view all movies with NO query stri
 </html>
 `;
 
+exports[`get all movies when: a user wants to view all movies with a specific release year AND run time then: we return all the movie titles with the specified release year AND run time 1`] = `
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>
+      The Ultimate Movie App
+    </title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"
+          href="/stylesheets/application.css"
+    >
+  </head>
+  <body>
+    <header>
+      <h1>
+        The Ultimate Movie App
+      </h1>
+    </header>
+    <main>
+      <p>
+        Here are your favourite movies:
+        <form action="/movies/create"
+              method="get"
+        >
+          <button>
+            Add a Movie
+          </button>
+        </form>
+      </p>
+      <ul>
+      </ul>
+      <p>
+      </p>
+      <a href="/movies/1">
+      </a>
+      <p>
+      </p>
+      <a href="/movies/2">
+      </a>
+      <p>
+      </p>
+      <a href="/movies/3">
+      </a>
+    </main>
+  </body>
+</html>
+`;
+
 exports[`get all movies when: a user wants to view all movies with a specific release year BUT the user does NOT enter a valid year in the query string then: we return a flash error message that says 'Year must be a 4-digit number' 1`] = `
 <!DOCTYPE html>
 <html lang="en-US">

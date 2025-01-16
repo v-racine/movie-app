@@ -30,12 +30,11 @@ class MoviesRepo {
         } else {
           ALL_MOVIES += `${key} = $${count} AND `;
         }
-
         params.push(value);
 
         count++;
       }
-
+      ALL_MOVIES += ` ORDER BY movie_year, movie_title`;
       result = await this.client.dbQuery(ALL_MOVIES, ...params);
     } else {
       const ALL_MOVIES = `SELECT * FROM ${this.table} ORDER BY movie_year, movie_title`;
