@@ -137,6 +137,9 @@ const AppFactory = (args) => {
   );
   app.post('/reviews/delete/:id', reviewsHandler.try(reviewsHandler.deleteReview));
 
+  app.get('/signUp', usersHandler.try(usersHandler.signUp));
+  app.post('/signUp', usersHandler.try(usersHandler.signUpPost));
+
   return app;
 };
 

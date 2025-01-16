@@ -6,10 +6,15 @@ class UsersHandler extends BaseHandler {
     super();
     this.usersService = args.usersService;
 
-    this.createUser = this.createUser.bind(this);
+    this.signUp = this.signUp.bind(this);
+    this.signUpPost = this.signUpPost.bind(this);
   }
 
-  async createUser() {}
+  async signUp(req, res) {
+    res.render('sign-up');
+  }
+
+  async signUpPost(req, res) {}
 }
 
 module.exports = { UsersHandler };

@@ -120,9 +120,13 @@ exports[`get all movies when: a user wants to view all movies with a specific re
       </ul>
       <p>
         Tell us about your favourite movies!
-        <button>
-          Sign Up
-        </button>
+        <form action="/signup"
+              method="get"
+        >
+          <button>
+            Sign Up
+          </button>
+        </form>
         <form action="/movies"
               method="get"
         >
