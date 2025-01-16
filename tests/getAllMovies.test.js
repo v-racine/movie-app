@@ -86,10 +86,48 @@ describe('get all movies', () => {
 
     test('then: we return all the movie titles with the specified release year', () => {
       expect(mockPgClient.dbQuery).toHaveBeenCalledWith(
-        'SELECT * FROM movies WHERE movie_title = $1 OR movie_year = $2 OR run_time = $3 ORDER BY movie_year, movie_title',
-        undefined,
+        'SELECT * FROM movies WHERE movie_year = $1 ORDER BY movie_year, movie_title',
         2007,
-        undefined,
+      );
+
+      const text = rsp.text;
+      expect(text).toMatchSnapshot();
+
+      const status = rsp.status;
+      expect(status).toBe(200);
+    });
+  });
+
+  describe('when: a user wants to view all movies with a specific release year AND run time', () => {
+    let rsp;
+
+    let movies = {
+      rows: [
+        { id: 1, title: 'There Will Be Blood', year: 2007, runTime: 158 },
+        { id: 2, title: 'No Country for Old Men', year: 2007, runTime: 122 },
+        { id: 3, title: 'New Papillon Movie', year: 2025, runTime: 122 },
+      ],
+    };
+
+    beforeEach(async () => {
+      mockPgClient.dbQuery = jest.fn().mockImplementation(() => {
+        return new Promise((resolve) => {
+          resolve(movies);
+        });
+      });
+
+      rsp = await request(app).get('/movies?year=2007&runTime=122').send();
+    });
+
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
+    test('then: we return all the movie titles with the specified release year AND run time', () => {
+      expect(mockPgClient.dbQuery).toHaveBeenCalledWith(
+        'SELECT * FROM movies WHERE movie_year = $1 AND run_time = $2 ORDER BY movie_year, movie_title',
+        2007,
+        122,
       );
 
       const text = rsp.text;

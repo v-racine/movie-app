@@ -1,3 +1,5 @@
+const { run } = require('jest');
+
 class MoviesRepo {
   constructor(args) {
     this.table = args.table;
@@ -5,15 +7,35 @@ class MoviesRepo {
   }
 
   async getAll(queryStrings) {
-    let queryParams = Object.keys(queryStrings);
+    const { title, year, runTime } = queryStrings;
+    let newQueryObject = {
+      movie_title: title,
+      movie_year: year,
+      run_time: runTime,
+    };
+
+    let allQueryParamsAndValues = Object.entries(newQueryObject);
+    let queryParamsAndValues = allQueryParamsAndValues.filter((subArr) => subArr[1]);
+
     let result;
 
-    if (queryParams.length > 0) {
-      const ALL_MOVIES = `SELECT * FROM ${this.table} WHERE movie_title = $1 OR movie_year = $2 OR run_time = $3 ORDER BY movie_year, movie_title`;
+    if (queryParamsAndValues.length > 0) {
+      let ALL_MOVIES = `SELECT * FROM ${this.table} WHERE `;
+      const params = [];
+      let count = 1;
 
-      const { title, year, runTime } = queryStrings;
+      for (const [key, value] of queryParamsAndValues) {
+        if (count === queryParamsAndValues.length) {
+          ALL_MOVIES += `${key} = $${count}`;
+        } else {
+          ALL_MOVIES += `${key} = $${count} AND `;
+        }
+        params.push(value);
 
-      result = await this.client.dbQuery(ALL_MOVIES, title, year, runTime);
+        count++;
+      }
+      ALL_MOVIES += ` ORDER BY movie_year, movie_title`;
+      result = await this.client.dbQuery(ALL_MOVIES, ...params);
     } else {
       const ALL_MOVIES = `SELECT * FROM ${this.table} ORDER BY movie_year, movie_title`;
 
@@ -46,7 +68,7 @@ class MoviesRepo {
       if (count === len) {
         query += `${key} = $${count}`;
       } else {
-        query += `${key} = $${count} AND`;
+        query += `${key} = $${count} AND `;
       }
 
       params.push(value);
