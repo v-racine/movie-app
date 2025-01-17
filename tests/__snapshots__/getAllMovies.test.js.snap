@@ -19,16 +19,13 @@ exports[`get all movies when: a user wants to view all movies with NO query stri
       </h1>
     </header>
     <main>
-      <p>
-        Here are your favourite movies:
-        <form action="/movies/create"
-              method="get"
-        >
-          <button>
-            Add a Movie
-          </button>
-        </form>
-      </p>
+      <form action="/movies/create"
+            method="get"
+      >
+        <button>
+          Add a Movie
+        </button>
+      </form>
       <ul>
       </ul>
       <p>
@@ -65,16 +62,13 @@ exports[`get all movies when: a user wants to view all movies with a specific re
       </h1>
     </header>
     <main>
-      <p>
-        Here are your favourite movies:
-        <form action="/movies/create"
-              method="get"
-        >
-          <button>
-            Add a Movie
-          </button>
-        </form>
-      </p>
+      <form action="/movies/create"
+            method="get"
+      >
+        <button>
+          Add a Movie
+        </button>
+      </form>
       <ul>
       </ul>
       <p>
@@ -120,11 +114,18 @@ exports[`get all movies when: a user wants to view all movies with a specific re
       </ul>
       <p>
         Tell us about your favourite movies!
-        <form action="/signup"
+        <form action="/signUp"
               method="get"
         >
           <button>
             Sign Up
+          </button>
+        </form>
+        <form action="/signIn"
+              method="get"
+        >
+          <button>
+            Sign In
           </button>
         </form>
         <form action="/movies"
@@ -170,16 +171,13 @@ exports[`get all movies when: a user wants to view all movies with a specific re
       </h1>
     </header>
     <main>
-      <p>
-        Here are your favourite movies:
-        <form action="/movies/create"
-              method="get"
-        >
-          <button>
-            Add a Movie
-          </button>
-        </form>
-      </p>
+      <form action="/movies/create"
+            method="get"
+      >
+        <button>
+          Add a Movie
+        </button>
+      </form>
       <ul>
       </ul>
       <p>

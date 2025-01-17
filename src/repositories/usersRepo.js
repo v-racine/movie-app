@@ -5,15 +5,11 @@ class UsersRepo {
   }
 
   async create(attrs) {
-    const NEW_USER = `
-      INSERT INTO ${this.table} (username, email, password) 
-      VALUES ($1, $2, $3) 
-      RETURNING * 
-    `;
+    const NEW_USER = `INSERT INTO ${this.table} (username, email, password) VALUES ($1, $2, $3) RETURNING * `;
 
     const { username, email, password } = attrs;
 
-    const result = await this.dbQuery(NEW_USER, username, email, password);
+    const result = await this.client.dbQuery(NEW_USER, username, email, password);
 
     return result.rows[0];
   }
@@ -41,7 +37,7 @@ class UsersRepo {
       count++;
     }
 
-    const result = await this.dbQuery(query, ...params);
+    const result = await this.client.dbQuery(query, ...params);
 
     return result.rows[0];
   }

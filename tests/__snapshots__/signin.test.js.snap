@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`sign up when: a user wants to view the form to signup then: we return the view of the form 1`] = `
+exports[`sign in when: a user wants to view the form to signin then: we return the view of the form 1`] = `
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
@@ -19,13 +19,13 @@ exports[`sign up when: a user wants to view the form to signup then: we return t
       </h1>
     </header>
     <main>
-      <form action="/signUp"
+      <form action="/signIn"
             method="post"
       >
         <dl>
           <dt>
             <label for="username">
-              Enter a username:
+              Enter your username:
             </label>
           </dt>
           <dd>
@@ -37,7 +37,7 @@ exports[`sign up when: a user wants to view the form to signup then: we return t
           </dd>
           <dt>
             <label for="email">
-              Enter a valid email:
+              Enter your email:
             </label>
           </dt>
           <dd>
@@ -49,24 +49,13 @@ exports[`sign up when: a user wants to view the form to signup then: we return t
           </dd>
           <dt>
             <label for="password">
-              Create a password:
+              Enter your password:
             </label>
           </dt>
           <dd>
             <input type="password"
                    id="password"
                    name="password"
-            >
-          </dd>
-          <dt>
-            <label for="passwordConfirmation">
-              Confirm your password:
-            </label>
-          </dt>
-          <dd>
-            <input type="password"
-                   id="passwordConfirmation"
-                   name="passwordConfirmation"
             >
           </dd>
         </dl>
@@ -78,11 +67,6 @@ exports[`sign up when: a user wants to view the form to signup then: we return t
                  value="Clear Form"
           >
         </fieldset>
-        <p>
-        </p>
-        <a href="/signin">
-          Have an account? Sign In
-        </a>
       </form>
     </main>
   </body>
