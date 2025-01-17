@@ -10,6 +10,10 @@ const {
   parseReviewer,
   parseGrade,
   parseComments,
+  parseUsername,
+  parseEmail,
+  parsePassword,
+  parsePasswordConfirmation,
 } = require('./middleware/parsers');
 const {
   parseTitleQuery,
@@ -30,6 +34,8 @@ const { ReviewsHandler } = require('./handlers/reviewsHandler');
 const { UsersRepo } = require('./repositories/usersRepo');
 const { UsersService } = require('./services/usersService');
 const { UsersHandler } = require('./handlers/usersHandler');
+
+const store = new session.MemoryStore(); //REMOVE LATER
 
 const AppFactory = (args) => {
   //repos
@@ -70,6 +76,7 @@ const AppFactory = (args) => {
         path: '/',
         secure: false,
       },
+      // store: store,
       name: 'movie-app-session-id',
       resave: false,
       saveUninitialized: true,
@@ -138,9 +145,19 @@ const AppFactory = (args) => {
   app.post('/reviews/delete/:id', reviewsHandler.try(reviewsHandler.deleteReview));
 
   app.get('/signUp', usersHandler.try(usersHandler.signUp));
-  app.post('/signUp', usersHandler.try(usersHandler.signUpPost));
+  app.post(
+    '/signUp',
+    [parseUsername, parseEmail, parsePassword, parsePasswordConfirmation],
+    usersHandler.try(usersHandler.signUpPost),
+  );
+
+  app.get(
+    '/signIn',
+    [parseUsername, parseEmail, parsePassword],
+    usersHandler.try(usersHandler.signIn),
+  );
 
   return app;
 };
 
-module.exports = AppFactory;
+module.exports = { AppFactory, store };

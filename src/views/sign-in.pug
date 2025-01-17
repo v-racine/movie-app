@@ -1,0 +1,39 @@
+extends layout 
+
+block main 
+  if err != undefined 
+    p #{err}
+
+  form(action="/signIn" method="post")
+    dl
+      dt
+        label(for="username") Enter your username:
+      dd
+        input(type="text"
+              id="username"
+              name="username"
+              placeholder="name"
+              value=username)
+      dt
+        label(for="email") Enter your email:
+      dd
+        input(type="email"
+              id="email"
+              name="email"
+              placeholder="username@example.com"
+              value=email)
+      dt
+        label(for="password") Enter your password:
+      dd
+        input(type="password"
+              id="password"
+              name="password"
+              value=password)
+     
+          
+    fieldset.actions
+      input(type="submit" value="Submit")
+      input(type="reset", value="Clear Form")
+
+
+

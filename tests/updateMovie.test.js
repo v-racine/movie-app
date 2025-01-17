@@ -2,7 +2,7 @@ const { Config } = require('../src/config/config');
 
 Config.Get(process.env);
 
-const AppFactory = require('../src/app');
+const { AppFactory } = require('../src/app');
 const request = require('supertest');
 
 describe('update a movie', () => {

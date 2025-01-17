@@ -8,7 +8,7 @@ class ErrEmailInUse extends Error {
 
 class ErrPasswordMisMatch extends Error {
   constructor() {
-    super('Password must match');
+    super('Passwords must match');
   }
 }
 
@@ -39,4 +39,4 @@ class UsersService {
   }
 }
 
-module.exports = { UsersService };
+module.exports = { UsersService, ErrEmailInUse, ErrPasswordMisMatch };
