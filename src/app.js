@@ -151,10 +151,11 @@ const AppFactory = (args) => {
     usersHandler.try(usersHandler.signUpPost),
   );
 
-  app.get(
+  app.get('/signIn', usersHandler.try(usersHandler.signIn));
+  app.post(
     '/signIn',
     [parseUsername, parseEmail, parsePassword],
-    usersHandler.try(usersHandler.signIn),
+    usersHandler.try(usersHandler.signInPost),
   );
 
   return app;

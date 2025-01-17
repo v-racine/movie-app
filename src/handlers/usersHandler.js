@@ -1,5 +1,10 @@
 const { BaseHandler } = require('./baseHandler');
-const { ErrEmailInUse, ErrPasswordMisMatch } = require('../services/usersService');
+const {
+  ErrEmailInUse,
+  ErrPasswordMisMatch,
+  ErrEmailNotFound,
+  ErrInvalidPassword,
+} = require('../services/usersService');
 const { validationResult } = require('express-validator');
 
 class UsersHandler extends BaseHandler {
@@ -9,6 +14,8 @@ class UsersHandler extends BaseHandler {
 
     this.signUp = this.signUp.bind(this);
     this.signUpPost = this.signUpPost.bind(this);
+    this.signIn = this.signIn.bind(this);
+    this.signInPost = this.signInPost.bind(this);
   }
 
   async signUp(req, res) {
@@ -38,7 +45,7 @@ class UsersHandler extends BaseHandler {
       user = await this.usersService.createUser(username, email, password, passwordConfirmation);
     } catch (err) {
       if (err instanceof ErrEmailInUse || err instanceof ErrPasswordMisMatch) {
-        return res.render('sign-up', { err });
+        return res.render('sign-in', { err });
       } else {
         console.log(`failed to create a user: ${err}`);
         return res.send('Internal server error');
@@ -54,6 +61,39 @@ class UsersHandler extends BaseHandler {
 
   async signIn(req, res) {
     res.render('sign-in');
+  }
+
+  async signInPost(req, res) {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      errors.array().forEach((error) => req.flash('error', error.msg));
+
+      return res.render('sign-in', {
+        flash: req.flash(),
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password,
+      });
+    }
+
+    const { username, email, password } = req.body;
+    let user;
+
+    try {
+      user = await this.usersService.signInUser(username, email, password);
+    } catch (err) {
+      if (err instanceof ErrEmailNotFound || err instanceof ErrInvalidPassword) {
+        return res.render('sign-up', { err });
+      } else {
+        console.log(`failed to sign in user: ${err}`);
+        return res.send('Internal server error');
+      }
+    }
+
+    req.session.userId = user.id;
+    req.flash('success', "You're signed in!");
+    res.redirect('/movies');
   }
 }
 
