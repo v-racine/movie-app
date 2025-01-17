@@ -112,22 +112,7 @@ exports[`get all movies when: a user wants to view all movies with a specific re
           Year must be a 4-digit number
         </li>
       </ul>
-      <p>
-        Tell us about your favourite movies!
-        <form action="/signUp"
-              method="get"
-        >
-          <button>
-            Sign Up
-          </button>
-        </form>
-        <form action="/signIn"
-              method="get"
-        >
-          <button>
-            Sign In
-          </button>
-        </form>
+      <fieldset class="actions">
         <form action="/movies"
               method="get"
         >
@@ -142,11 +127,39 @@ exports[`get all movies when: a user wants to view all movies with a specific re
             See Reviews
           </button>
         </form>
+      </fieldset>
+      <p>
+        Tell us about your favourite movies!
+        <form action="/signUp"
+              method="get"
+        >
+          <button>
+            Sign Up
+          </button>
+        </form>
       </p>
       <img src="/images/Children_of_paradise.jpg"
            alt="Children of Paradise"
            title="Children of Paradise"
       >
+      <footer>
+        <p>
+          <form action="/signIn"
+                method="get"
+          >
+            <button>
+              Sign In
+            </button>
+          </form>
+          <form action="/signOut"
+                method="post"
+          >
+            <button>
+              Sign Out
+            </button>
+          </form>
+        </p>
+      </footer>
     </main>
   </body>
 </html>
