@@ -4,7 +4,6 @@ Config.Get(process.env);
 
 const { AppFactory, store } = require('../src/app');
 const request = require('supertest');
-const { PasswordHelper } = require('../src/utilities/passwordHelper');
 
 describe('sign in', () => {
   const mockPgClient = {};
@@ -77,20 +76,21 @@ describe('sign in', () => {
       id: id,
       username: 'Phillips',
       email: 'test@test.com',
-      password: 'papillon',
+      password: 'papillon2',
     };
 
     beforeEach(async () => {
-      PasswordHelper.ComparePasswords = jest.fn().mockImplementation(() => {
-        return new Promise((resolve) => {
-          resolve(false);
-        });
-      });
-
       mockPgClient.dbQuery = jest.fn().mockImplementationOnce(() => {
         return new Promise((resolve) => {
           resolve({
-            rows: [{ username: 'Phillips', email: 'test@test.com', password: 'wrongPassword' }],
+            rows: [
+              {
+                username: 'Phillips',
+                email: 'test@test.com',
+                password:
+                  'f0cb357c9960fc49f80c807fbaaf45be391fb69502b22ed29149a7b67e3cb66ffa1cb747e62c7419ff548b0061d1a97d84d8b610da545b94a11c64297e763d8f.e40ff17e1d215c67',
+              },
+            ],
           });
         });
       });
@@ -126,14 +126,18 @@ describe('sign in', () => {
     };
 
     beforeEach(async () => {
-      PasswordHelper.ComparePasswords = jest.fn().mockImplementation(() => {
-        return new Promise((resolve) => {
-          resolve(true);
-        });
-      });
       mockPgClient.dbQuery = jest.fn().mockImplementationOnce(() => {
         return new Promise((resolve) => {
-          resolve({ rows: [{ id: id }] });
+          resolve({
+            rows: [
+              {
+                id: id,
+                username: 'Phillips',
+                password:
+                  'f0cb357c9960fc49f80c807fbaaf45be391fb69502b22ed29149a7b67e3cb66ffa1cb747e62c7419ff548b0061d1a97d84d8b610da545b94a11c64297e763d8f.e40ff17e1d215c67',
+              },
+            ],
+          });
         });
       });
 

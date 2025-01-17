@@ -92,7 +92,7 @@ class UsersHandler extends BaseHandler {
     }
 
     req.session.userId = user.id;
-    req.flash('success', "You're signed in!");
+    req.flash('success', `You're signed in, ${user.username}!`);
     res.redirect('/movies');
   }
 }
