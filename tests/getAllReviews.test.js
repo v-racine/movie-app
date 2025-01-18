@@ -88,7 +88,7 @@ describe('get all reviews', () => {
 
     test('then: we return all the reviews of that one movie', async () => {
       expect(mockPgClient.dbQuery).toHaveBeenCalledWith(
-        'SELECT * FROM reviews JOIN movies ON movies.id = reviews.movie_id WHERE movies.id = $1',
+        'SELECT reviews.*, movie_title FROM reviews JOIN movies ON movies.id = reviews.movie_id WHERE movies.id = $1',
         movieId.toString(),
       );
 
