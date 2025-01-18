@@ -87,7 +87,7 @@ class ReviewsRepo {
   }
 
   async getAllReviewsOfOneMovie(movieId) {
-    const ALL_REVIEWS_OF_ONE_MOVIE = `SELECT * FROM ${this.table} JOIN movies ON movies.id = ${this.table}.movie_id WHERE movies.id = $1`;
+    const ALL_REVIEWS_OF_ONE_MOVIE = `SELECT ${this.table}.*, movie_title FROM ${this.table} JOIN movies ON movies.id = ${this.table}.movie_id WHERE movies.id = $1`;
 
     const result = await this.client.dbQuery(ALL_REVIEWS_OF_ONE_MOVIE, movieId);
 
