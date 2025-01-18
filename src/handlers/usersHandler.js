@@ -16,6 +16,7 @@ class UsersHandler extends BaseHandler {
     this.signUpPost = this.signUpPost.bind(this);
     this.signIn = this.signIn.bind(this);
     this.signInPost = this.signInPost.bind(this);
+    this.signOut = this.signOut.bind(this);
   }
 
   async signUp(req, res) {
@@ -94,6 +95,13 @@ class UsersHandler extends BaseHandler {
     req.session.userId = user.id;
     req.flash('success', `You're signed in, ${user.username}!`);
     res.redirect('/movies');
+  }
+
+  async signOut(req, res) {
+    delete req.session.userId;
+
+    req.flash('success', `You're signed out. See you next time!`);
+    res.redirect('/');
   }
 }
 

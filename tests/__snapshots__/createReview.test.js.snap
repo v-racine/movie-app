@@ -5,7 +5,6 @@ exports[`add a review when: a user does NOT enter a valid grade then: we return 
 <html lang="en-US">
   <head>
     <title>
-      The Ultimate Movie App
     </title>
     <meta charset="UTF-8">
     <link rel="stylesheet"
@@ -15,7 +14,9 @@ exports[`add a review when: a user does NOT enter a valid grade then: we return 
   <body>
     <header>
       <h1>
-        The Ultimate Movie App
+        <a href="/">
+          The Ultimate Movie App
+        </a>
       </h1>
     </header>
     <main>
@@ -136,7 +137,6 @@ exports[`add a review when: a user does NOT enter a valid reviewer then: we retu
 <html lang="en-US">
   <head>
     <title>
-      The Ultimate Movie App
     </title>
     <meta charset="UTF-8">
     <link rel="stylesheet"
@@ -146,7 +146,9 @@ exports[`add a review when: a user does NOT enter a valid reviewer then: we retu
   <body>
     <header>
       <h1>
-        The Ultimate Movie App
+        <a href="/">
+          The Ultimate Movie App
+        </a>
       </h1>
     </header>
     <main>
@@ -267,7 +269,6 @@ exports[`add a review when: a user does NOT enter a valid title NOR a valid grad
 <html lang="en-US">
   <head>
     <title>
-      The Ultimate Movie App
     </title>
     <meta charset="UTF-8">
     <link rel="stylesheet"
@@ -277,7 +278,9 @@ exports[`add a review when: a user does NOT enter a valid title NOR a valid grad
   <body>
     <header>
       <h1>
-        The Ultimate Movie App
+        <a href="/">
+          The Ultimate Movie App
+        </a>
       </h1>
     </header>
     <main>
@@ -401,7 +404,6 @@ exports[`add a review when: a user does NOT enter a valid title then: we return 
 <html lang="en-US">
   <head>
     <title>
-      The Ultimate Movie App
     </title>
     <meta charset="UTF-8">
     <link rel="stylesheet"
@@ -411,7 +413,9 @@ exports[`add a review when: a user does NOT enter a valid title then: we return 
   <body>
     <header>
       <h1>
-        The Ultimate Movie App
+        <a href="/">
+          The Ultimate Movie App
+        </a>
       </h1>
     </header>
     <main>
@@ -532,7 +536,6 @@ exports[`add a review when: a user wants to view the form to add a review  then:
 <html lang="en-US">
   <head>
     <title>
-      The Ultimate Movie App
     </title>
     <meta charset="UTF-8">
     <link rel="stylesheet"
@@ -542,7 +545,9 @@ exports[`add a review when: a user wants to view the form to add a review  then:
   <body>
     <header>
       <h1>
-        The Ultimate Movie App
+        <a href="/">
+          The Ultimate Movie App
+        </a>
       </h1>
     </header>
     <main>

@@ -5,7 +5,6 @@ exports[`sign up when: a user wants to view the form to signup then: we return t
 <html lang="en-US">
   <head>
     <title>
-      The Ultimate Movie App
     </title>
     <meta charset="UTF-8">
     <link rel="stylesheet"
@@ -15,7 +14,9 @@ exports[`sign up when: a user wants to view the form to signup then: we return t
   <body>
     <header>
       <h1>
-        The Ultimate Movie App
+        <a href="/">
+          The Ultimate Movie App
+        </a>
       </h1>
     </header>
     <main>
@@ -81,7 +82,7 @@ exports[`sign up when: a user wants to view the form to signup then: we return t
         <p>
         </p>
         <a href="/signin">
-          Have an account? Sign In
+          Already have an account? Sign In
         </a>
       </form>
     </main>

@@ -5,7 +5,6 @@ exports[`update a movie when: a user does NOT enter a valid run time then: we re
 <html lang="en-US">
   <head>
     <title>
-      The Ultimate Movie App
     </title>
     <meta charset="UTF-8">
     <link rel="stylesheet"
@@ -15,7 +14,9 @@ exports[`update a movie when: a user does NOT enter a valid run time then: we re
   <body>
     <header>
       <h1>
-        The Ultimate Movie App
+        <a href="/">
+          The Ultimate Movie App
+        </a>
       </h1>
     </header>
     <main>
@@ -87,7 +88,6 @@ exports[`update a movie when: a user does NOT enter a valid title NOR a valid ye
 <html lang="en-US">
   <head>
     <title>
-      The Ultimate Movie App
     </title>
     <meta charset="UTF-8">
     <link rel="stylesheet"
@@ -97,7 +97,9 @@ exports[`update a movie when: a user does NOT enter a valid title NOR a valid ye
   <body>
     <header>
       <h1>
-        The Ultimate Movie App
+        <a href="/">
+          The Ultimate Movie App
+        </a>
       </h1>
     </header>
     <main>
@@ -172,7 +174,6 @@ exports[`update a movie when: a user does NOT enter a valid title then: we retur
 <html lang="en-US">
   <head>
     <title>
-      The Ultimate Movie App
     </title>
     <meta charset="UTF-8">
     <link rel="stylesheet"
@@ -182,7 +183,9 @@ exports[`update a movie when: a user does NOT enter a valid title then: we retur
   <body>
     <header>
       <h1>
-        The Ultimate Movie App
+        <a href="/">
+          The Ultimate Movie App
+        </a>
       </h1>
     </header>
     <main>
@@ -254,7 +257,6 @@ exports[`update a movie when: a user does NOT enter a valid year then: we return
 <html lang="en-US">
   <head>
     <title>
-      The Ultimate Movie App
     </title>
     <meta charset="UTF-8">
     <link rel="stylesheet"
@@ -264,7 +266,9 @@ exports[`update a movie when: a user does NOT enter a valid year then: we return
   <body>
     <header>
       <h1>
-        The Ultimate Movie App
+        <a href="/">
+          The Ultimate Movie App
+        </a>
       </h1>
     </header>
     <main>
@@ -336,7 +340,6 @@ exports[`update a movie when: a user wants to view the form to edit a movie then
 <html lang="en-US">
   <head>
     <title>
-      The Ultimate Movie App
     </title>
     <meta charset="UTF-8">
     <link rel="stylesheet"
@@ -346,7 +349,9 @@ exports[`update a movie when: a user wants to view the form to edit a movie then
   <body>
     <header>
       <h1>
-        The Ultimate Movie App
+        <a href="/">
+          The Ultimate Movie App
+        </a>
       </h1>
     </header>
     <main>

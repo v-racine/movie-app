@@ -4,6 +4,8 @@ Config.Get(process.env);
 
 const { AppFactory, store } = require('../src/app');
 const request = require('supertest');
+const cookieParser = require('cookie-parser');
+const cookie = require('cookie');
 
 describe('sign in', () => {
   const mockPgClient = {};
@@ -32,7 +34,7 @@ describe('sign in', () => {
     });
   });
 
-  describe("when: the user attempt to submit the 'sign-in' form BUT enters an incorrect email", () => {
+  describe("when: the user attempts to submit the 'sign-in' form BUT enters an incorrect email", () => {
     let rsp;
     let id = '3424';
 
@@ -68,7 +70,7 @@ describe('sign in', () => {
     });
   });
 
-  describe("when: the user attempt to submit the 'sign-in' form BUT enters an incorrect password", () => {
+  describe("when: the user attempts to submit the 'sign-in' form BUT enters an incorrect password", () => {
     let rsp;
     let id = '3424';
 
@@ -160,8 +162,18 @@ describe('sign in', () => {
         user.email,
       );
 
-      const toClient = rsp.get('set-cookie')[0];
-      expect(toClient).toBeDefined();
+      const c = cookie.parse(rsp.headers['set-cookie'][0]);
+      const encryptedSessionId = c['movie-app-session-id'];
+      const decryptedSessionId = cookieParser.signedCookie(
+        encryptedSessionId,
+        'this is not very secure',
+      );
+
+      const sessions = store.sessions;
+      const session = JSON.parse(sessions[decryptedSessionId]);
+      const userId = session.userId;
+
+      expect(userId).toBe(id);
 
       const status = rsp.status;
       expect(status).toBe(302);

@@ -5,7 +5,6 @@ exports[`get a review when: a user requests a review that doesn't exist then: we
 <html lang="en-US">
   <head>
     <title>
-      The Ultimate Movie App
     </title>
     <meta charset="UTF-8">
     <link rel="stylesheet"
@@ -15,7 +14,9 @@ exports[`get a review when: a user requests a review that doesn't exist then: we
   <body>
     <header>
       <h1>
-        The Ultimate Movie App
+        <a href="/">
+          The Ultimate Movie App
+        </a>
       </h1>
     </header>
     <main>
@@ -132,7 +133,6 @@ exports[`get a review when: a user requests a review that doesn't exist when: us
 <html lang="en-US">
   <head>
     <title>
-      The Ultimate Movie App
     </title>
     <meta charset="UTF-8">
     <link rel="stylesheet"
@@ -142,7 +142,9 @@ exports[`get a review when: a user requests a review that doesn't exist when: us
   <body>
     <header>
       <h1>
-        The Ultimate Movie App
+        <a href="/">
+          The Ultimate Movie App
+        </a>
       </h1>
     </header>
     <main>
@@ -185,22 +187,20 @@ exports[`get a review when: a user requests a review that doesn't exist when: us
           </tbody>
         </table>
       </p>
-      <footer>
-        <form action="/reviews/update/3"
-              method="get"
-        >
-          <button>
-            Edit review
-          </button>
-        </form>
-        <form action="/reviews/delete/3"
-              method="post"
-        >
-          <button type="submit">
-            Delete Review
-          </button>
-        </form>
-      </footer>
+      <form action="/reviews/update/3"
+            method="get"
+      >
+        <button>
+          Edit review
+        </button>
+      </form>
+      <form action="/reviews/delete/3"
+            method="post"
+      >
+        <button type="submit">
+          Delete Review
+        </button>
+      </form>
     </main>
   </body>
 </html>
