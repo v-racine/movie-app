@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`sign out when: a user wants to sign out then: we return a success flash message and redirect to the homepage 1`] = `"Found. Redirecting to /"`;

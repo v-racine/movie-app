@@ -76,7 +76,7 @@ const AppFactory = (args) => {
         path: '/',
         secure: false,
       },
-      // store: store,
+      store: store,
       name: 'movie-app-session-id',
       resave: false,
       saveUninitialized: true,
@@ -157,6 +157,7 @@ const AppFactory = (args) => {
     [parseUsername, parseEmail, parsePassword],
     usersHandler.try(usersHandler.signInPost),
   );
+  app.post('/signOut', usersHandler.try(usersHandler.signOut));
 
   return app;
 };

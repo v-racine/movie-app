@@ -21,8 +21,10 @@ block main
             b Comments: 
             | #{review.comments} 
 
-  footer  
-    form(action=`/reviews/update/${review.id}` method="get")
-      button Edit review  
-    form(action=`/reviews/delete/${review.id}` method="post")
-      button(type="submit") Delete Review
+    
+  form(action=`/reviews/update/${review.id}` method="get")
+    button Edit review  
+  form(action=`/reviews/delete/${review.id}` method="post")
+    button(type="submit") Delete Review
+
+    block footer

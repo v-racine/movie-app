@@ -21,8 +21,10 @@ block main
     form(action=`/movies/${movie.id}/reviews` method="get")
       button See Reviews  
 
-  footer  
-    form(action=`/movies/update/${movie.id}` method="get")
-      button Edit Movie  
-    form(action=`/movies/delete/${movie.id}` method="post")
-      button(type="submit") Delete Movie
+   
+  form(action=`/movies/update/${movie.id}` method="get")
+    button Edit Movie  
+  form(action=`/movies/delete/${movie.id}` method="post")
+    button(type="submit") Delete Movie
+
+  block footer

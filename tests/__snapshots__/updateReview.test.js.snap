@@ -5,7 +5,6 @@ exports[`update a movie when: a user does NOT enter a valid grade then: we retur
 <html lang="en-US">
   <head>
     <title>
-      The Ultimate Movie App
     </title>
     <meta charset="UTF-8">
     <link rel="stylesheet"
@@ -15,7 +14,9 @@ exports[`update a movie when: a user does NOT enter a valid grade then: we retur
   <body>
     <header>
       <h1>
-        The Ultimate Movie App
+        <a href="/">
+          The Ultimate Movie App
+        </a>
       </h1>
     </header>
     <main>
@@ -123,7 +124,6 @@ exports[`update a movie when: a user does NOT enter a valid reviewer NOR a valid
 <html lang="en-US">
   <head>
     <title>
-      The Ultimate Movie App
     </title>
     <meta charset="UTF-8">
     <link rel="stylesheet"
@@ -133,7 +133,9 @@ exports[`update a movie when: a user does NOT enter a valid reviewer NOR a valid
   <body>
     <header>
       <h1>
-        The Ultimate Movie App
+        <a href="/">
+          The Ultimate Movie App
+        </a>
       </h1>
     </header>
     <main>
@@ -244,7 +246,6 @@ exports[`update a movie when: a user does NOT enter a valid reviewer then: we re
 <html lang="en-US">
   <head>
     <title>
-      The Ultimate Movie App
     </title>
     <meta charset="UTF-8">
     <link rel="stylesheet"
@@ -254,7 +255,9 @@ exports[`update a movie when: a user does NOT enter a valid reviewer then: we re
   <body>
     <header>
       <h1>
-        The Ultimate Movie App
+        <a href="/">
+          The Ultimate Movie App
+        </a>
       </h1>
     </header>
     <main>
@@ -362,7 +365,6 @@ exports[`update a movie when: a user wants to view the form to edit a review the
 <html lang="en-US">
   <head>
     <title>
-      The Ultimate Movie App
     </title>
     <meta charset="UTF-8">
     <link rel="stylesheet"
@@ -372,7 +374,9 @@ exports[`update a movie when: a user wants to view the form to edit a review the
   <body>
     <header>
       <h1>
-        The Ultimate Movie App
+        <a href="/">
+          The Ultimate Movie App
+        </a>
       </h1>
     </header>
     <main>

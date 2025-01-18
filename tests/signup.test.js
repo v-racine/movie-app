@@ -192,33 +192,18 @@ describe('sign up', () => {
       const toClient = rsp.get('set-cookie')[0];
       expect(toClient).toBeDefined();
 
-      // console.log("RAW COOKIE WE SEND TO CLIENT", toClient)
+      const c = cookie.parse(rsp.headers['set-cookie'][0]);
+      const encryptedSessionId = c['movie-app-session-id'];
+      const decryptedSessionId = cookieParser.signedCookie(
+        encryptedSessionId,
+        'this is not very secure',
+      );
 
-      // const c = cookie.parse(rsp.headers['set-cookie'][0]);
+      const sessions = store.sessions;
+      const session = JSON.parse(sessions[decryptedSessionId]);
+      const userId = session.userId;
 
-      // console.log('PARSED COOKIE', c);
-
-      // const s = c['movie-app-session-id'];
-
-      // console.log('ENCRYPTED/ENCODED SESSION', s);
-
-      // const d = cookieParser.signedCookie(s, 'this is not very secure');
-
-      // console.log('ENCODED DATA WE CARE ABOUT', d);
-
-      // const storeSessions = store.sessions;
-
-      // console.log("OUR SERVER'S STORE OF SESSIONS", storeSessions);
-
-      // const stringifiedSession = storeSessions[d];
-
-      // console.log("THIS IS THE STRING VALUE SESSION WE WANT", stringifiedSession)
-
-      // const parsed = JSON.parse(stringifiedSession);
-
-      // console.log("THE OBJECT VERSION OF THE VALUE", parsed)
-
-      // expect(parsed.userId).toBe(id);
+      expect(userId).toBe(id);
 
       const status = rsp.status;
       expect(status).toBe(302);

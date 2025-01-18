@@ -5,7 +5,6 @@ exports[`get all reviews when: user wants to view ALL reviews by ONE reviewwer t
 <html lang="en-US">
   <head>
     <title>
-      The Ultimate Movie App
     </title>
     <meta charset="UTF-8">
     <link rel="stylesheet"
@@ -15,7 +14,9 @@ exports[`get all reviews when: user wants to view ALL reviews by ONE reviewwer t
   <body>
     <header>
       <h1>
-        The Ultimate Movie App
+        <a href="/">
+          The Ultimate Movie App
+        </a>
       </h1>
     </header>
     <main>
@@ -59,7 +60,6 @@ exports[`get all reviews when: user wants to view ALL reviews of ONE movie then:
 <html lang="en-US">
   <head>
     <title>
-      The Ultimate Movie App
     </title>
     <meta charset="UTF-8">
     <link rel="stylesheet"
@@ -69,7 +69,9 @@ exports[`get all reviews when: user wants to view ALL reviews of ONE movie then:
   <body>
     <header>
       <h1>
-        The Ultimate Movie App
+        <a href="/">
+          The Ultimate Movie App
+        </a>
       </h1>
     </header>
     <main>
@@ -113,7 +115,6 @@ exports[`get all reviews when: user wants to view ALL reviews then: we return al
 <html lang="en-US">
   <head>
     <title>
-      The Ultimate Movie App
     </title>
     <meta charset="UTF-8">
     <link rel="stylesheet"
@@ -123,7 +124,9 @@ exports[`get all reviews when: user wants to view ALL reviews then: we return al
   <body>
     <header>
       <h1>
-        The Ultimate Movie App
+        <a href="/">
+          The Ultimate Movie App
+        </a>
       </h1>
     </header>
     <main>
