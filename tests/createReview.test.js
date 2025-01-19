@@ -8,15 +8,28 @@ const request = require('supertest');
 describe('add a review', () => {
   const mockPgClient = {};
 
-  const app = AppFactory({
-    pgClient: mockPgClient,
-  });
+  const userId = '23';
+
+  const dirtyRottenSessionMiddleware = (req, _, next) => {
+    req.session = {
+      userId: userId,
+    };
+
+    next();
+  };
+
+  const app = AppFactory(
+    {
+      pgClient: mockPgClient,
+    },
+    { middlewares: [dirtyRottenSessionMiddleware] },
+  );
 
   describe('when: a user wants to view the form to add a review ', () => {
     let rsp;
 
     beforeEach(async () => {
-      rsp = await request(app).get('/reviews/create').send();
+      rsp = await request(app).get('/reviews/create');
     });
 
     afterEach(() => {
@@ -43,8 +56,6 @@ describe('add a review', () => {
     };
 
     beforeEach(async () => {
-      mockPgClient.dbQuery = jest.fn();
-
       rsp = await request(app)
         .post(`/reviews/create`)
         .send(
@@ -292,11 +303,12 @@ describe('add a review', () => {
 
       expect(mockPgClient.dbQuery).toHaveBeenNthCalledWith(
         4,
-        'INSERT INTO reviews (reviewer, grade, comments, movie_id) VALUES ($1, $2, $3, $4)',
+        'INSERT INTO reviews (reviewer, grade, comments, movie_id, user_id) VALUES ($1, $2, $3, $4, $5)',
         review.reviewer,
         'A+',
         review.comments,
         review.movieId,
+        userId,
       );
 
       const status = rsp.status;

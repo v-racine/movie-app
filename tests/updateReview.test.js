@@ -5,12 +5,25 @@ Config.Get(process.env);
 const { AppFactory } = require('../src/app');
 const request = require('supertest');
 
-describe('update a movie', () => {
+describe('update a review', () => {
   const mockPgClient = {};
 
-  const app = AppFactory({
-    pgClient: mockPgClient,
-  });
+  const userId = '23';
+
+  const dirtyRottenSessionMiddleware = (req, _, next) => {
+    req.session = {
+      userId: userId,
+    };
+
+    next();
+  };
+
+  const app = AppFactory(
+    {
+      pgClient: mockPgClient,
+    },
+    { middlewares: [dirtyRottenSessionMiddleware] },
+  );
 
   describe('when: a user wants to view the form to edit a review', () => {
     let rsp;
@@ -186,10 +199,11 @@ describe('update a movie', () => {
 
       expect(mockPgClient.dbQuery).toHaveBeenNthCalledWith(
         2,
-        'UPDATE reviews SET reviewer = $1, grade = $2, comments = $3 WHERE id = $4',
+        'UPDATE reviews SET reviewer = $1, grade = $2, comments = $3, user_id = $4 WHERE id = $5',
         updatedReview.reviewer,
         updatedReview.grade,
         updatedReview.comments,
+        userId,
         id,
       );
 

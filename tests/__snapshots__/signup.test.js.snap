@@ -20,6 +20,11 @@ exports[`sign up when: a user wants to view the form to signup then: we return t
       </h1>
     </header>
     <main>
+      <p>
+      </p>
+      <b>
+        Create an account:
+      </b>
       <form action="/signUp"
             method="post"
       >
@@ -80,10 +85,10 @@ exports[`sign up when: a user wants to view the form to signup then: we return t
           >
         </fieldset>
         <p>
+          <a href="/signIn">
+            Already have an account? Sign In
+          </a>
         </p>
-        <a href="/signin">
-          Already have an account? Sign In
-        </a>
       </form>
     </main>
   </body>
