@@ -49,7 +49,7 @@ class UsersHandler extends BaseHandler {
         return res.render('sign-in', { err });
       } else {
         console.log(`failed to create a user: ${err}`);
-        return res.send('Internal server error');
+        return res.render('sign-up', { oops: true });
       }
     }
 
@@ -88,7 +88,7 @@ class UsersHandler extends BaseHandler {
         return res.render('sign-up', { err });
       } else {
         console.log(`failed to sign in user: ${err}`);
-        return res.send('Internal server error');
+        return res.render('sign-in', { oops: true });
       }
     }
 
