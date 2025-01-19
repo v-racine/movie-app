@@ -4,6 +4,9 @@ block main
   if err != undefined 
     p #{err}
 
+  p 
+  b Sign In: 
+
   form(action="/signIn" method="post")
     dl
       dt
@@ -34,6 +37,9 @@ block main
     fieldset.actions
       input(type="submit" value="Submit")
       input(type="reset", value="Clear Form")
+
+  p
+    a(href='/signUp') Don't have an account? Sign Up
 
     block footer
 

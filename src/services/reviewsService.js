@@ -72,16 +72,16 @@ class ReviewsService {
     return reviewInfo;
   }
 
-  async reviewMovie(title, reviewer, grade, comments) {
+  async reviewMovie(title, reviewer, grade, comments, userId) {
     const existingReview = await this.reviewsRepo.getOneBy({ title, reviewer });
     if (existingReview) {
       throw new ErrReviewAlreadyExists();
     }
 
-    await this.reviewsRepo.create({ title, reviewer, grade, comments });
+    await this.reviewsRepo.create({ title, reviewer, grade, comments, userId });
   }
 
-  async updateReview(id, attrs) {
+  async updateReview(id, attrs, userId) {
     const existingReview = await this.reviewsRepo.getOne(id);
     if (!existingReview) {
       throw new ErrReviewNotFound();
@@ -89,11 +89,11 @@ class ReviewsService {
 
     Object.assign(existingReview, attrs);
 
-    await this.reviewsRepo.update(id, existingReview);
+    await this.reviewsRepo.update(id, existingReview, userId);
   }
 
-  async deleteReview(id) {
-    await this.reviewsRepo.delete(id);
+  async deleteReview(id, userId) {
+    await this.reviewsRepo.delete(id, userId);
   }
 }
 

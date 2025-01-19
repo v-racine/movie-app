@@ -77,7 +77,7 @@ class ReviewsHandler extends BaseHandler {
     const { title, reviewer, grade, comments } = req.body;
 
     try {
-      await this.reviewsService.reviewMovie(title, reviewer, grade, comments);
+      await this.reviewsService.reviewMovie(title, reviewer, grade, comments, req.session.userId);
     } catch (err) {
       if (err instanceof ErrReviewAlreadyExists) {
         console.log(err);
@@ -126,7 +126,7 @@ class ReviewsHandler extends BaseHandler {
     }
 
     try {
-      await this.reviewsService.updateReview(req.params.id, req.body);
+      await this.reviewsService.updateReview(req.params.id, req.body, req.session.userId);
     } catch (err) {
       if (err instanceof ErrReviewNotFound) {
         return res.render('new-review', { err });
@@ -142,7 +142,7 @@ class ReviewsHandler extends BaseHandler {
 
   async deleteReview(req, res) {
     try {
-      await this.reviewsService.deleteReview(req.params.id);
+      await this.reviewsService.deleteReview(req.params.id, req.session.userId);
     } catch (err) {
       if (err instanceof Error) {
         console.log(`failed to delete review: ${err.message}`);

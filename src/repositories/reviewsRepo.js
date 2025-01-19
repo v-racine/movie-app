@@ -66,24 +66,24 @@ class ReviewsRepo {
     const result = await this.client.dbQuery(FETCH_MOVIE_ID, title);
     const movieId = result.rows[0].id;
 
-    const CREATE_REVIEW = `INSERT INTO ${this.table} (reviewer, grade, comments, movie_id) VALUES ($1, $2, $3, $4)`;
-    const { reviewer, grade, comments } = attrs;
+    const CREATE_REVIEW = `INSERT INTO ${this.table} (reviewer, grade, comments, movie_id, user_id) VALUES ($1, $2, $3, $4, $5)`;
+    const { reviewer, grade, comments, userId } = attrs;
 
-    await this.client.dbQuery(CREATE_REVIEW, reviewer, grade, comments, movieId);
+    await this.client.dbQuery(CREATE_REVIEW, reviewer, grade, comments, movieId, userId);
   }
 
-  async update(id, updatedReview) {
-    const UPDATED_REVIEW = `UPDATE ${this.table} SET reviewer = $1, grade = $2, comments = $3 WHERE id = $4`;
+  async update(id, updatedReview, userId) {
+    const UPDATED_REVIEW = `UPDATE ${this.table} SET reviewer = $1, grade = $2, comments = $3, user_id = $4 WHERE id = $5`;
 
     const { reviewer, grade, comments } = updatedReview;
 
-    await this.client.dbQuery(UPDATED_REVIEW, reviewer, grade, comments, id);
+    await this.client.dbQuery(UPDATED_REVIEW, reviewer, grade, comments, userId, id);
   }
 
-  async delete(id) {
-    const DELETE_REVIEW = `DELETE FROM ${this.table} WHERE id = $1`;
+  async delete(id, userId) {
+    const DELETE_REVIEW = `DELETE FROM ${this.table} WHERE id = $1 AND user_id = $2`;
 
-    await this.client.dbQuery(DELETE_REVIEW, id);
+    await this.client.dbQuery(DELETE_REVIEW, id, userId);
   }
 
   async getAllReviewsOfOneMovie(movieId) {

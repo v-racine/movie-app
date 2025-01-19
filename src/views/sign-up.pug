@@ -3,6 +3,9 @@ extends layout
 block main 
   if err != undefined 
     p #{err}
+  
+  p 
+  b Create an account: 
 
   form(action="/signUp" method="post")
     dl
@@ -44,6 +47,6 @@ block main
 
 
     p
-    a(href='/signin') Already have an account? Sign In
+      a(href='/signIn') Already have an account? Sign In
 
     block footer

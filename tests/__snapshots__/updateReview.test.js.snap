@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`update a movie when: a user does NOT enter a valid grade then: we return 'Invalid grade 1`] = `
+exports[`update a review when: a user does NOT enter a valid grade then: we return 'Invalid grade 1`] = `
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
@@ -119,7 +119,7 @@ exports[`update a movie when: a user does NOT enter a valid grade then: we retur
 </html>
 `;
 
-exports[`update a movie when: a user does NOT enter a valid reviewer NOR a valid grade then: we return 'Reviewer's name must be between 1 and 250 characters' AND 'Invalid grade 1`] = `
+exports[`update a review when: a user does NOT enter a valid reviewer NOR a valid grade then: we return 'Reviewer's name must be between 1 and 250 characters' AND 'Invalid grade 1`] = `
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
@@ -241,7 +241,7 @@ exports[`update a movie when: a user does NOT enter a valid reviewer NOR a valid
 </html>
 `;
 
-exports[`update a movie when: a user does NOT enter a valid reviewer then: we return 'Reviewer's name must be between 1 and 250 characters' 1`] = `
+exports[`update a review when: a user does NOT enter a valid reviewer then: we return 'Reviewer's name must be between 1 and 250 characters' 1`] = `
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
@@ -360,7 +360,7 @@ exports[`update a movie when: a user does NOT enter a valid reviewer then: we re
 </html>
 `;
 
-exports[`update a movie when: a user wants to view the form to edit a review then: we return the view of the form 1`] = `
+exports[`update a review when: a user wants to view the form to edit a review then: we return the view of the form 1`] = `
 <!DOCTYPE html>
 <html lang="en-US">
   <head>

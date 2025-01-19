@@ -20,6 +20,7 @@ const {
   parseYearQuery,
   parseRuntimeQuery,
 } = require('./middleware/queryStringParser');
+const { requireAuth } = require('./middleware/authenticator');
 
 const { HomeHandler } = require('./handlers/homeHandler');
 
@@ -37,7 +38,13 @@ const { UsersHandler } = require('./handlers/usersHandler');
 
 const store = new session.MemoryStore(); //REMOVE LATER
 
-const AppFactory = (args) => {
+/**
+ *
+ * @param {*} args { dbQuery(statement: string, ...parameters string[]): object | object[] }
+ * @param {*} testHacks optional (just for tests) { middlewares: ExpressMiddlewareFunctions[] }
+ * @returns
+ */
+const AppFactory = (args, testHacks) => {
   //repos
   const moviesRepo = new MoviesRepo({
     table: 'movies',
@@ -64,6 +71,13 @@ const AppFactory = (args) => {
 
   app.set('views', 'src/views');
   app.set('view engine', 'pug');
+
+  // real app should never enter this block
+  if (testHacks && testHacks.middlewares) {
+    for (const testHackMiddleware of testHacks.middlewares) {
+      app.use(testHackMiddleware);
+    }
+  }
 
   app.use(express.static('public'));
   app.use(morgan('common'));
@@ -100,6 +114,7 @@ const AppFactory = (args) => {
   // register handlers to routes
   app.get('/', homeHandler.try(homeHandler.getHomePage));
 
+  //movies
   app.get(
     '/movies',
     [parseTitleQuery, parseYearQuery, parseRuntimeQuery],
@@ -121,10 +136,12 @@ const AppFactory = (args) => {
   );
   app.post('/movies/delete/:id', moviesHandler.try(moviesHandler.deleteMovie));
 
+  //reviews
   app.get('/reviews', reviewsHandler.try(reviewsHandler.getAllReviews));
-  app.get('/reviews/create', reviewsHandler.try(reviewsHandler.reviewMovie));
+  app.get('/reviews/create', requireAuth, reviewsHandler.try(reviewsHandler.reviewMovie));
   app.post(
     '/reviews/create',
+    requireAuth,
     [parseTitle, parseReviewer, parseGrade, parseComments],
     reviewsHandler.try(reviewsHandler.reviewMoviePost),
   );
@@ -136,14 +153,16 @@ const AppFactory = (args) => {
     reviewsHandler.try(reviewsHandler.getAllReviewsByOneReviewer),
   );
 
-  app.get('/reviews/update/:id', reviewsHandler.try(reviewsHandler.updateReview));
+  app.get('/reviews/update/:id', requireAuth, reviewsHandler.try(reviewsHandler.updateReview));
   app.post(
     '/reviews/update/:id',
+    requireAuth,
     [parseReviewer, parseGrade, parseComments],
     reviewsHandler.try(reviewsHandler.updateReviewPost),
   );
-  app.post('/reviews/delete/:id', reviewsHandler.try(reviewsHandler.deleteReview));
+  app.post('/reviews/delete/:id', requireAuth, reviewsHandler.try(reviewsHandler.deleteReview));
 
+  //users
   app.get('/signUp', usersHandler.try(usersHandler.signUp));
   app.post(
     '/signUp',
