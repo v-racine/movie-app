@@ -41,7 +41,7 @@ class MoviesHandler extends BaseHandler {
         return res.render('new-movie', { err });
       } else {
         console.log(`failed to find the movie: ${err}`);
-        return res.send('Internal server error');
+        return res.render('home', { oops: true });
       }
     }
 
@@ -76,7 +76,7 @@ class MoviesHandler extends BaseHandler {
         return res.render('new-movie', { err });
       } else {
         console.log(`failed to create new movie: ${err}`);
-        return res.send('Internal server error');
+        return res.render('new-movie', { oops: true });
       }
     }
 
@@ -92,8 +92,9 @@ class MoviesHandler extends BaseHandler {
       if (err instanceof ErrMovieNotFound) {
         return res.render('new-movie', { err });
       } else {
-        console.log(`failed to find the movie: ${err}`);
-        return res.send('Internal server error');
+        console.log(`failed to view update form: ${err}`);
+        return res.render('movie', { oops: true, movie, id: req.params.id });
+        // return res.send('Internal server error');
       }
     }
 
@@ -121,8 +122,8 @@ class MoviesHandler extends BaseHandler {
       if (err instanceof ErrMovieNotFound) {
         return res.render('new-movie', { err });
       } else {
-        console.log(`failed to update movie: ${err}`);
-        return res.send('Internal server error');
+        console.log(`failed to update the movie: ${err}`);
+        return res.render('edit-movie', { oops: true, id: req.params.id });
       }
     }
 
@@ -136,9 +137,7 @@ class MoviesHandler extends BaseHandler {
     } catch (err) {
       if (err instanceof Error) {
         console.log(`failed to delete movie: ${err.message}`);
-
-        res.send('Internal Server Error');
-        return;
+        return res.render('home', { oops: true, id: req.params.id });
       }
     }
 
