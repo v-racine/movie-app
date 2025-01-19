@@ -28,7 +28,7 @@ class MoviesHandler extends BaseHandler {
     }
 
     const movies = await this.moviesService.getAllMovies(req.query);
-    res.render('movie-list', { movies });
+    return res.render('movie-list', { movies });
   }
 
   async getMovie(req, res) {
@@ -45,11 +45,11 @@ class MoviesHandler extends BaseHandler {
       }
     }
 
-    res.render('movie', { movie });
+    return res.render('movie', { movie });
   }
 
   async createMovie(req, res) {
-    res.render('new-movie');
+    return res.render('new-movie');
   }
 
   async createMoviePost(req, res) {
@@ -94,11 +94,10 @@ class MoviesHandler extends BaseHandler {
       } else {
         console.log(`failed to view update form: ${err}`);
         return res.render('movie', { oops: true, movie, id: req.params.id });
-        // return res.send('Internal server error');
       }
     }
 
-    res.render('edit-movie', { movie, id: req.params.id });
+    return res.render('edit-movie', { movie, id: req.params.id });
   }
 
   async updateMoviePost(req, res) {

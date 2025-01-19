@@ -23,7 +23,7 @@ class ReviewsHandler extends BaseHandler {
 
   async getAllReviews(req, res) {
     const reviews = await this.reviewsService.getAllReviews();
-    res.render('reviews-list', { reviews });
+    return res.render('reviews-list', { reviews });
   }
 
   async getReview(req, res) {
@@ -36,26 +36,26 @@ class ReviewsHandler extends BaseHandler {
         return res.render('new-review', { err });
       } else {
         console.log(`failed to find the review: ${err}`);
-        return res.send('Internal server error');
+        return res.send('home', { oops: true });
       }
     }
 
-    res.render('review', { review });
+    return res.render('review', { review });
   }
 
   async getAllReviewsOfOneMovie(req, res) {
     const reviews = await this.reviewsService.getAllReviewsOfOneMovie(req.params.id);
-    res.render('reviews-list', { reviews });
+    return res.render('reviews-list', { reviews });
   }
 
   async getAllReviewsByOneReviewer(req, res) {
     const reviewer = req.params.reviewer;
     const reviews = await this.reviewsService.getAllReviewsByOneReviewer(reviewer);
-    res.render('reviews-list', { reviews });
+    return res.render('reviews-list', { reviews });
   }
 
   async reviewMovie(req, res) {
-    res.render('new-review');
+    return res.render('new-review');
   }
 
   async reviewMoviePost(req, res) {
@@ -84,7 +84,7 @@ class ReviewsHandler extends BaseHandler {
         return res.render('new-review', { err });
       } else {
         console.log(`failed to create new movie: ${err}`);
-        return res.send('Internal server error');
+        return res.render('new-review', { oops: true });
       }
     }
 
@@ -102,11 +102,11 @@ class ReviewsHandler extends BaseHandler {
         return res.render('new-review', { err });
       } else {
         console.log(`failed to find the review: ${err}`);
-        return res.send('Internal server error');
+        return res.render('review', { oops: true, review, id: req.params.id });
       }
     }
 
-    res.render('edit-review', { review, id: req.params.id });
+    return res.render('edit-review', { review, id: req.params.id });
   }
 
   async updateReviewPost(req, res) {
@@ -132,7 +132,7 @@ class ReviewsHandler extends BaseHandler {
         return res.render('new-review', { err });
       } else {
         console.log(`failed to find the review: ${err}`);
-        return res.send('Internal server error');
+        return res.render('edit-review', { oops: true, id: req.params.id });
       }
     }
 
@@ -146,9 +146,7 @@ class ReviewsHandler extends BaseHandler {
     } catch (err) {
       if (err instanceof Error) {
         console.log(`failed to delete review: ${err.message}`);
-
-        res.send('Internal Server Error');
-        return;
+        return res.render('home', { oops: true });
       }
     }
 
