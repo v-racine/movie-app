@@ -20,7 +20,7 @@ class UsersHandler extends BaseHandler {
   }
 
   async signUp(req, res) {
-    res.render('sign-up');
+    return res.render('sign-up');
   }
 
   async signUpPost(req, res) {
@@ -61,7 +61,7 @@ class UsersHandler extends BaseHandler {
   }
 
   async signIn(req, res) {
-    res.render('sign-in');
+    return res.render('sign-in');
   }
 
   async signInPost(req, res) {
