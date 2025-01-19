@@ -10,13 +10,17 @@ Welcome to Me and My Chicken's Movie App!
 # Set-up
 
 1. Install Dependencies: Run `npm install` in the project root.
-2. Create DB: Run `createdb movies-app`
 
-3. Configure Environment: [do they have to do anything here?]
+2. Start PostgreSQL 
 
-4. Setup DB: Run `psql -d movies-app < schema.sql` to load schema and 
+3. Create DB: Run `createdb movies-app`
+
+4. Configure Environment: [???]
+
+5. Setup DB: Run `psql -d movies-app < schema.sql` to load schema and 
 `psql -d < seed-data` to load seed data.
-5. Start App: `npm run dev` 
+
+6. Start App: `npm run dev` 
 
 # Application Overview
 
