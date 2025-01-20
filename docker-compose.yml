@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:14-alpine  # Use the official PostgreSQL 14 image with Alpine Linux
+    container_name: postgres  # Optional: Give the container a name
+    environment:
+      POSTGRES_USER: myuser  # Set the PostgreSQL user
+      POSTGRES_PASSWORD: mypassword  # Set the PostgreSQL password
+    ports:
+      - "5432:5432"  # Map the host port 5432 to the container port 5432
+
+  movie-app:
+    build: . 
+    ports:
+      - "3000:3000"
+    environment:
+      DB_STORE_ADDRESS: "postgresql://myuser:mypassword@postgres:5432"

@@ -13,12 +13,11 @@ Welcome to Me and My Chicken's Movie App!
 
 2. Start PostgreSQL 
 
-3. Create DB: Run `createdb movies-app`
+3. Create DB: Run `createdb movies-app` OR `createdb -h localhost -U <username> movies-app`
 
 4. Configure Environment: [???]
 
-5. Setup DB: Run `psql -d movies-app < schema.sql` to load schema and 
-`psql -d < seed-data` to load seed data.
+5. Setup DB: Run `psql -d movies-app < schema.sql` OR `psql -h localhost -U <username> -d movies-app < schema.sql` to load schema AND  `psql -d < seed-data.sql` OR `psql -h localhost -U <username> -d movies-app < seed-data.sql` to load seed data.
 
 6. Start App: `npm run dev` 
 
