@@ -178,6 +178,12 @@ const AppFactory = (args, testHacks) => {
   );
   app.post('/signOut', usersHandler.try(usersHandler.signOut));
 
+  //error-handler for non-existing paths
+  app.use((err, req, res, _next) => {
+    console.log(err);
+    res.status(404).send(err.message);
+  });
+
   return app;
 };
 
