@@ -30,15 +30,6 @@ a {
   text-decoration: none;
 }
 
-.flag {
-  width: 100px;
-}
-
-.current img {
-  border: 2px solid rgb(17, 17, 158);
-  padding: 2px;
-}
-
 ul {
   display: inline-block;
 }

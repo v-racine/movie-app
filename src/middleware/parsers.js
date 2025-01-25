@@ -24,7 +24,7 @@ module.exports = {
   parseUsername: check('username')
     .trim()
     .isLength({ min: 1, max: 150 })
-    .withMessage('Movie title must be between 1 and 250 characters'),
+    .withMessage('Username must be between 1 and 150 characters'),
   parseEmail: check('email').trim().normalizeEmail().isEmail().withMessage('Must be a valid email'),
   parsePassword: check('password')
     .trim()
