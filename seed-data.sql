@@ -9,13 +9,13 @@ VALUES
 ('Nosferatu', 2024, 132); 
 
 INSERT INTO users (username, email, password)
-VALUES ('Valerie', 'papillion@pap.com', 'Ipooped'),
-('Salamander', 'salaman@pap.com', 'smells!'),
-('Wesley', 'wes@pap.com', 'buttslach');
+VALUES ('Valerie', 'papillion@pap.com', 'password'),
+('Salamander', 'salaman@pap.com', 'password2'),
+('Wesley', 'wes@pap.com', 'password3');
 
  
 INSERT INTO reviews (reviewer, grade, comments, movie_id, user_id)
-VALUES ('Valerie', 'A+', 'it''s me and my chicken', 2, 1),
+VALUES ('Valerie', 'A+', 'a classic!', 2, 1),
 ('Salamander', 'A+', 'awesome goth cinema', 7, 2), 
-('Wesley', 'C', 'stoopid chicken movie', 4, 3);
+('Wesley', 'C', 'stoopid movie', 4, 3);
 
