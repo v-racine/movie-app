@@ -1,6 +1,6 @@
 # Movie-App
 
-Welcome to Me and My Chicken's Movie App!
+Welcome to My Movie App!
 
 # Prerequisites
 
